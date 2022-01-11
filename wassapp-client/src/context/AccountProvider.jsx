@@ -1,16 +1,16 @@
 import React, { createContext, useState } from 'react'
 
-export const AccontContext = createContext()
+export const AccountContext = createContext()
 
 const AccountProvider = (porps) => {
     const [accountData, setAccountData] = useState()
     return (
-        <AccontContext.Provider value={{
+        <AccountContext.Provider value={{
             accountData,
             setAccountData
         }}>
             {porps.children}
-        </AccontContext.Provider>
+        </AccountContext.Provider>
     )
 }
 
