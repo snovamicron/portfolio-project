@@ -1,26 +1,28 @@
 import React, { useContext } from 'react'
-import { Dropdown, Icon, Popup } from 'semantic-ui-react'
+import { Dropdown, Icon } from 'semantic-ui-react'
 import { AccountContext } from '../../context/AccountProvider'
+import { SideBarVisibleContext } from '../../context/SideBarVisibleProvider'
 import { GoogleLogout } from 'react-google-login'
 
 const Header = () => {
     const { accountData, setAccountData } = useContext(AccountContext)
+    const { visible, setVisible } = useContext(SideBarVisibleContext)
     const logout = ()=>{
         setAccountData(null)
     }
     return (
         <>
             <div className='chatBoxNavigation'>
-                <img className='chatBoxNavigationAvtar' src={accountData.imageUrl} alt="img" />
+                <img onClick={()=> visible?setVisible(false):setVisible(true)} className='chatBoxNavigationAvtar' src={accountData.imageUrl} alt="img" />
                 <Dropdown
                     icon='server'
                     floating
-                    Button
+                    button
                     className='icon chatBoxNavigationBtn'
                 >
                     <Dropdown.Menu >
                         <Dropdown.Divider />
-                        <Dropdown.Item icon='user' text='profile' />
+                        <Dropdown.Item onClick={()=> visible?setVisible(false):setVisible(true)} icon='user' text='profile' />
                         <Dropdown.Item>
                             <GoogleLogout
                             render={renderProps => (

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Grid, Modal } from 'semantic-ui-react'
 import Menu from './menu/Menu'
+import SideBarVisibleProvider from '../context/SideBarVisibleProvider'
 
 const ChatBox = () => {
     return (
@@ -15,8 +16,10 @@ const ChatBox = () => {
                 <Modal.Content style={{ padding: 0, backgroundColor: '#1a1e20' }}>
                     <Grid celled style={{ margin: 0 }}>
                         <Grid.Row style={{ height: '93vh' }}>
-                            <Grid.Column width={5} style={{ padding: 0 }}>
+                            <Grid.Column width={5} style={{ padding: 0, height:'100%' }}>
+                            <SideBarVisibleProvider>
                                 <Menu/>
+                            </SideBarVisibleProvider>
                             </Grid.Column>
                             <Grid.Column width={11}> hello </Grid.Column>
                         </Grid.Row>

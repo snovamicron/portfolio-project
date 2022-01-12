@@ -1,20 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Grid } from 'semantic-ui-react'
 import Header from './Header'
 import SearchMenu from './Search.jsx'
+import InfoSideBar from '../side-bar/InfoSideBar'
 
 
 const Menu = () => {
     return (
         <>
-            <Grid celled style={{ margin: 0 }}>
-                <Grid.Row style={{ height: '9vh', backgroundColor: '#4e585e' }}>
-                    <Header/>
+            <Grid celled style={{ margin: 0, height: '100%' }}>
+                <Grid.Row style={{ height: '10%', backgroundColor: '#4e585e' }}>
+                    <Header />
                 </Grid.Row>
-                <Grid.Row style={{ height: '7vh', backgroundColor: '#1a1e20', justifyContent:'center', alignItems:'center' }}>
-                    <SearchMenu/>
+                <Grid.Row className='menuHeader'>
+                    <SearchMenu />
                 </Grid.Row>
-                <Grid.Row style={{ height: '77vh' }}>hi</Grid.Row>
+                <Grid.Row className='menuBody'>
+                    <InfoSideBar/>
+                </Grid.Row>
             </Grid>
         </>
     )
