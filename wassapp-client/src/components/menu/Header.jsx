@@ -20,7 +20,7 @@ const Header = () => {
                     button
                     className='icon chatBoxNavigationBtn'
                 >
-                    <Dropdown.Menu >
+                    <Dropdown.Menu direction='left' >
                         <Dropdown.Divider />
                         <Dropdown.Item onClick={()=> visible?setVisible(false):setVisible(true)} icon='user' text='profile' />
                         <Dropdown.Item>

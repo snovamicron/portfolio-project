@@ -7,7 +7,7 @@ const Messanger = () => {
     const {accountData} = useContext(AccountContext)
     return (
         <>
-            <div style={{backgroundColor: 'black'}}>
+            <div style={{backgroundColor:'#000000'}}>
                 {accountData ? <ChatBox/> : <Login/>}
             </div>
 

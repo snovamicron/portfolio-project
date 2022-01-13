@@ -1,28 +1,27 @@
 import React from 'react'
 import { Grid, Modal } from 'semantic-ui-react'
-import Menu from './menu/Menu'
 import SideBarVisibleProvider from '../context/SideBarVisibleProvider'
+import InfoSideBar from './side-bar/InfoSideBar'
 
 const ChatBox = () => {
     return (
         <>
             <Modal
                 open={true}
-                size='fullscreen'
                 style={{
-                    height: '90vh',
+                    width:'91vw'
                 }}
             >
-                <Modal.Content style={{ padding: 0, backgroundColor: '#1a1e20' }}>
-                    <Grid celled style={{ margin: 0 }}>
-                        <Grid.Row style={{ height: '93vh' }}>
+                <Modal.Content style={{ padding: 0, backgroundColor: '#000000' }}>
+                    <Grid style={{ margin: 0, height: '93vh'}} columns={2}>
+
                             <Grid.Column width={5} style={{ padding: 0, height:'100%' }}>
                             <SideBarVisibleProvider>
-                                <Menu/>
+                                <InfoSideBar/>
                             </SideBarVisibleProvider>
                             </Grid.Column>
-                            <Grid.Column width={11}> hello </Grid.Column>
-                        </Grid.Row>
+
+                            <Grid.Column width={11} style={{ backgroundColor:'#700B97'}}> hello </Grid.Column>
                     </Grid>
                 </Modal.Content>
             </Modal>
