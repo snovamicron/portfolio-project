@@ -196,6 +196,34 @@ body{
 
 
 
+/* css for conversation.jsx */
+.conversation{
+  padding: 0 !important;
+}
+.conversationList{
+  border: 1px solid #000000;
+  background-color: #700B97;
+  border-top: none;
+}
+.conversationList:hover{
+  background-color: #3E065F;
+}
+.conversationList > div{
+  display: flex;
+  align-items: center;
+}
+.conversationList > div >img{
+  cursor: pointer;
+  height: 40px;
+  border-radius: 30px;
+  margin-right: 20px;
+}
+.conversationList > div >p{
+  color: aqua;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
 
 /* media qurey for NavBar */
 @media only screen and (max-width: 768px){

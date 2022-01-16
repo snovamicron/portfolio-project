@@ -14,3 +14,16 @@ export const joinChat = async (data) =>{
     return response.data
 }
 
+// api call for fatching all users data
+
+export const fatchUserData = async (id) => {
+    const response = await axios({
+        method:'post',
+        url:'/user/fatch-users',
+        data:{
+            "googleId":id
+        }
+    })
+    return response.data
+}
+
