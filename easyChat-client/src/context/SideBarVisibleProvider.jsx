@@ -4,10 +4,13 @@ export const SideBarVisibleContext = createContext()
 
 const SideBarVisibleProvider = (props) => {
     const [ visible, setVisible ] = useState(false)
+    const [ data, setData ] = useState({})
     return (
         <SideBarVisibleContext.Provider value={{
             visible,
-            setVisible
+            setVisible, 
+            data,
+            setData
         }}>
             {props.children}
         </SideBarVisibleContext.Provider>

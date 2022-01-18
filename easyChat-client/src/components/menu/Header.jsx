@@ -6,14 +6,18 @@ import { GoogleLogout } from 'react-google-login'
 
 const Header = () => {
     const { accountData, setAccountData } = useContext(AccountContext)
-    const { visible, setVisible } = useContext(SideBarVisibleContext)
+    const { visible, setVisible, data, setData } = useContext(SideBarVisibleContext)
     const logout = ()=>{
         setAccountData(null)
+    }
+    const handleSideBar = () => {
+        visible?setVisible(false):setVisible(true);
+        data?setData(accountData):setData({})
     }
     return (
         <>
             <div className='chatBoxNavigation'>
-                <img onClick={()=> visible?setVisible(false):setVisible(true)} className='chatBoxNavigationAvtar' src={accountData.imageUrl} alt="img" />
+                <img onClick={()=> handleSideBar()} className='chatBoxNavigationAvtar' src={accountData.imageUrl} alt="img" />
                 <Dropdown
                     icon='server'
                     floating
@@ -22,7 +26,7 @@ const Header = () => {
                 >
                     <Dropdown.Menu direction='left' >
                         <Dropdown.Divider />
-                        <Dropdown.Item onClick={()=> visible?setVisible(false):setVisible(true)} icon='user' text='profile' />
+                        <Dropdown.Item onClick={()=> handleSideBar()} icon='user' text='profile' />
                         <Dropdown.Item>
                             <GoogleLogout
                             render={renderProps => (

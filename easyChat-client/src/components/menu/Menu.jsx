@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Grid } from 'semantic-ui-react'
 import Header from './Header'
 import SearchMenu from './Search.jsx'
 import Conversation from './Conversation'
+import UserProvider from '../../context/UserProvider'
 
 
 const Menu = () => {
+    const [ text, setText ] = useState('')
     return (
         <>
             <Grid style={{ margin: 0, height: '100%' }}>
@@ -13,10 +15,12 @@ const Menu = () => {
                     <Header />
                 </Grid.Row>
                 <Grid.Row className='menuHeader'>
-                    <SearchMenu />
+                    <SearchMenu setText={setText}/>
                 </Grid.Row>
                 <Grid.Row className='menuBody'>
-                    <Conversation/>
+                    <UserProvider>
+                        <Conversation text={text}/>
+                    </UserProvider>
                 </Grid.Row>
             </Grid>
         </>

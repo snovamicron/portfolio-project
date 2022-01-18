@@ -71,14 +71,13 @@ body{
 }
 
 .searchBar{
- width: 100%;
+  width: 80%;
 }
-.searchBar > div{
- width: 100%;
+.searchBar > input{
+  border-radius: 60px !important;
+  background-color: #3E065F !important;
 }
-.searchBar > div > input{
- background-color: #3E065F !important;
-}
+
 .menuHeader{
   height: 10%;
   /* background-color: #1a1e20; */

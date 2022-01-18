@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react'
 import { SideBarVisibleContext } from '../../context/SideBarVisibleProvider'
-import { AccountContext } from '../../context/AccountProvider'
 import Menu from '../menu/Menu'
 import {
     Container,
@@ -11,8 +10,7 @@ import {
 
 const InfoSideBar = () => {
     const [blure, setBlure] = useState(false)
-    const { visible, setVisible } = useContext(SideBarVisibleContext)
-    const { accountData } = useContext(AccountContext)
+    const { visible, setVisible, data, setData } = useContext(SideBarVisibleContext)
     return (
         <>
 
@@ -22,7 +20,9 @@ const InfoSideBar = () => {
                     columns={1}
                     animation='overlay'
                     icon='labeled'
-                    onHide={() => setVisible(false)}
+                    onHide={() => {
+                        setVisible(false);
+                    }}
                     visible={visible}
                     style={{
                         backgroundColor: '#000000',
@@ -30,12 +30,14 @@ const InfoSideBar = () => {
                     }}
                 >
                     <div className='infoSegment-1 infoSegment'>
-                        <i onClick={() => setVisible(false)} className='fas fa-arrow-left' />
+                        <i onClick={() => {
+                            setVisible(false);
+                        }} className='fas fa-arrow-left' />
                         <p>Profile</p>
                     </div>
                     <div className='infoSegment-2 infoSegment'>
                         <div onMouseEnter={() => setBlure(true)} onMouseLeave={() => setBlure(false)} className="Image">
-                            <img src={accountData.imageUrl} alt="" />
+                            <img src={data.imageUrl} alt="" />
 
                             <div style={{ display: `${blure ? '' : 'none'}` }} className="ImageChange">
                                 <i className='fas fa-camera' />
@@ -49,7 +51,7 @@ const InfoSideBar = () => {
                                     <h4>Name</h4>
                                 </Grid.Column>
                                 <Grid.Column width={14}>
-                                    <p>{accountData.name}</p>
+                                    <p>{data.name}</p>
                                 </Grid.Column>
                                 <Grid.Column width={2}>
                                     <i className='fas fa-pen' />
