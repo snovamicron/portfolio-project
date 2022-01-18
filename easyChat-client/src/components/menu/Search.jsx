@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Input } from 'semantic-ui-react'
 
 const Search = ({ setText }) => {
-  const [loading, setLoading] = useState(false)
+  const [loading] = useState(false)
   return (
     <>
       <Input className='searchBar'

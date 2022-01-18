@@ -9,10 +9,11 @@ const Header = () => {
     const { visible, setVisible, data, setData } = useContext(SideBarVisibleContext)
     const logout = ()=>{
         setAccountData(null)
+        console.clear()
     }
     const handleSideBar = () => {
         visible?setVisible(false):setVisible(true);
-        data?setData(accountData):setData({})
+        // data?setData(accountData):setData({})
     }
     return (
         <>

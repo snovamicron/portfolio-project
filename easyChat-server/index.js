@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import cors from 'cors'
 import connectToMongo from './database/dbConnection.js'
 import ProfileRoutes from './routes/ProfileRoutes.js'
+import ConversationRoutes from './routes/ConversationRoutes.js'
 
 dotenv.config()
 const app = express();
@@ -17,6 +18,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/user', ProfileRoutes)
+app.use('/conversation', ConversationRoutes)
 
 app.listen(PORT, ()=>{
     console.log(`sever in running on http://localhost:${PORT}`);

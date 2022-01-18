@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { SideBarVisibleContext } from '../../context/SideBarVisibleProvider'
+import { AccountContext } from '../../context/AccountProvider'
 import Menu from '../menu/Menu'
 import {
     Container,
@@ -10,7 +11,8 @@ import {
 
 const InfoSideBar = () => {
     const [blure, setBlure] = useState(false)
-    const { visible, setVisible, data, setData } = useContext(SideBarVisibleContext)
+    const { visible, setVisible } = useContext(SideBarVisibleContext)
+    const { accountData } = useContext(AccountContext)
     return (
         <>
 
@@ -37,7 +39,7 @@ const InfoSideBar = () => {
                     </div>
                     <div className='infoSegment-2 infoSegment'>
                         <div onMouseEnter={() => setBlure(true)} onMouseLeave={() => setBlure(false)} className="Image">
-                            <img src={data.imageUrl} alt="" />
+                            <img src={accountData.imageUrl} alt="" />
 
                             <div style={{ display: `${blure ? '' : 'none'}` }} className="ImageChange">
                                 <i className='fas fa-camera' />
@@ -51,7 +53,7 @@ const InfoSideBar = () => {
                                     <h4>Name</h4>
                                 </Grid.Column>
                                 <Grid.Column width={14}>
-                                    <p>{data.name}</p>
+                                    <p>{accountData.name}</p>
                                 </Grid.Column>
                                 <Grid.Column width={2}>
                                     <i className='fas fa-pen' />

@@ -224,6 +224,25 @@ body{
 }
 
 
+
+
+
+/* css for room.jsx */
+.room{
+  border: 1px solid #ffffff;
+}
+.room > div{
+  border: 1px solid #ffffff;
+  padding: 0 !important;
+}
+.roomHeader{
+  
+}
+
+
+
+
+
 /* media qurey for NavBar */
 @media only screen and (max-width: 768px){
   .navStyle{

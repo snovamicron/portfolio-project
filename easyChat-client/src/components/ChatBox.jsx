@@ -1,6 +1,7 @@
 import React from 'react'
 import { Grid, Modal } from 'semantic-ui-react'
 import SideBarVisibleProvider from '../context/SideBarVisibleProvider'
+import Room from './room/Room'
 import InfoSideBar from './side-bar/InfoSideBar'
 
 const ChatBox = () => {
@@ -21,7 +22,9 @@ const ChatBox = () => {
                             </SideBarVisibleProvider>
                             </Grid.Column>
 
-                            <Grid.Column width={11} style={{ backgroundColor:'#700B97'}}> hello </Grid.Column>
+                            <Grid.Column width={11} >
+                                <Room/>
+                            </Grid.Column>
                     </Grid>
                 </Modal.Content>
             </Modal>

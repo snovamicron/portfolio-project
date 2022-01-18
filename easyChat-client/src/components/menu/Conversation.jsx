@@ -5,23 +5,29 @@ import { fatchUserData } from '../../services/api'
 import { UserContext } from '../../context/UserProvider'
 import { SideBarVisibleContext } from '../../context/SideBarVisibleProvider'
 import { setConversation } from '../../services/api'
+import { ConversationContext } from '../../context/ConversationProvider'
 
 
 const Conversation = ({ text }) => {
     const { accountData } = useContext(AccountContext)
     const { userData, setUserData } = useContext(UserContext)
-    const { setVisible, setData } = useContext(SideBarVisibleContext)
+    const { setVisible } = useContext(SideBarVisibleContext)
+    const { setRoomChat } = useContext(ConversationContext)
     const { googleId } = accountData
     const getData = async () => {
         const data = await fatchUserData(googleId)
         setUserData(data)
     }
-    const handleClick = async(data) =>{
-       await setConversation(data)
+    const handleClick = async (data) => {
+        const { conversation, conversationInfo } = data
+        setRoomChat(conversation)
+        const response = await setConversation(conversationInfo)
+        console.log(response);
     }
     useEffect(() => {
         getData()
-    })
+        // eslint-disable-next-line
+    }, [])
     return (
         <>
             <Grid className='conversation' columns={1}>
@@ -31,18 +37,18 @@ const Conversation = ({ text }) => {
                             <Grid.Column
                                 className='conversationList'
                                 key={ele.googleId}
-                                onClick={()=>{
+                                onClick={() => {
                                     handleClick({
-                                        senderId: googleId,
-                                        receiverId: ele.googleId
+                                        conversationInfo: {
+                                            senderId: googleId,
+                                            receiverId: ele.googleId
+                                        },
+                                        conversation: ele
                                     })
                                 }}
-                                >
+                            >
                                 <div>
-                                    <img onClick={() => {
-                                        setData(ele);
-                                        setVisible(true);
-                                    }} src={ele.imageUrl} alt="" />
+                                    <img src={ele.imageUrl} alt="" />
                                     <p>{ele.name}</p>
                                 </div>
                             </Grid.Column>
