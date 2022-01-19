@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react'
-import { SideBarVisibleContext } from '../../context/SideBarVisibleProvider'
 import { AccountContext } from '../../context/AccountProvider'
 import Menu from '../menu/Menu'
 import {
@@ -11,7 +10,7 @@ import {
 
 const InfoSideBar = () => {
     const [blure, setBlure] = useState(false)
-    const { visible, setVisible } = useContext(SideBarVisibleContext)
+    const [ visible, setVisible ] = useState(false)  
     const { accountData } = useContext(AccountContext)
     return (
         <>
@@ -80,7 +79,7 @@ const InfoSideBar = () => {
 
                 </Sidebar>
                 <Sidebar.Pusher style={{ height: '100%' }}>
-                    <Menu />
+                    <Menu setVisible={setVisible}/>
                 </Sidebar.Pusher>
             </Sidebar.Pushable>
 

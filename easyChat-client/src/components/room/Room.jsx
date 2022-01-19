@@ -1,19 +1,15 @@
 import React from 'react'
-import { Grid } from 'semantic-ui-react'
+import { Container } from 'semantic-ui-react'
 import Chat from './Chat'
 import RoomHeader from './RoomHeader'
 
-const Room = () => {
+const Room = ({ setVisible }) => {
     return (
         <>
-            <Grid className='room' columns={1}>
-                <Grid.Column>
-                    <RoomHeader/>
-                </Grid.Column>
-                <Grid.Column>
+            <Container className='room' columns={1}>
+                    <RoomHeader setVisible={setVisible}/>
                     <Chat/>
-                </Grid.Column>
-            </Grid>
+            </Container>
         </>
     )
 }

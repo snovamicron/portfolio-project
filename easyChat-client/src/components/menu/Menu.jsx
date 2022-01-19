@@ -6,13 +6,13 @@ import Conversation from './Conversation'
 import UserProvider from '../../context/UserProvider'
 
 
-const Menu = () => {
+const Menu = ({ setVisible }) => {
     const [ text, setText ] = useState('')
     return (
         <>
             <Grid style={{ margin: 0, height: '100%' }}>
                 <Grid.Row style={{ height: '10%', backgroundColor: '#8E05C2' }}>
-                    <Header />
+                    <Header setVisible={setVisible} />
                 </Grid.Row>
                 <Grid.Row className='menuHeader'>
                     <SearchMenu setText={setText}/>

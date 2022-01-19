@@ -3,7 +3,6 @@ import { Grid } from 'semantic-ui-react'
 import { AccountContext } from '../../context/AccountProvider.jsx'
 import { fatchUserData } from '../../services/api'
 import { UserContext } from '../../context/UserProvider'
-import { SideBarVisibleContext } from '../../context/SideBarVisibleProvider'
 import { setConversation } from '../../services/api'
 import { ConversationContext } from '../../context/ConversationProvider'
 
@@ -11,7 +10,6 @@ import { ConversationContext } from '../../context/ConversationProvider'
 const Conversation = ({ text }) => {
     const { accountData } = useContext(AccountContext)
     const { userData, setUserData } = useContext(UserContext)
-    const { setVisible } = useContext(SideBarVisibleContext)
     const { setRoomChat } = useContext(ConversationContext)
     const { googleId } = accountData
     const getData = async () => {
