@@ -1,6 +1,7 @@
 import React from 'react'
 import { Grid, Modal, Sidebar } from 'semantic-ui-react'
 import InfoSideBar from './side-bar/InfoSideBar'
+import SearchMessageSideBar from './side-bar/SearchMessageSideBar'
 import UserInfoSideBar from './side-bar/UserInfoSideBar'
 
 const ChatBox = () => {
@@ -20,6 +21,7 @@ const ChatBox = () => {
                         </Grid.Column>
 
                         <Sidebar.Pushable as={Grid.Column} width={11} >
+                            <SearchMessageSideBar/>
                             <UserInfoSideBar/>
                         </Sidebar.Pushable>
                     </Grid>

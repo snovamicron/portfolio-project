@@ -7,7 +7,6 @@ import ContactDpModal from '../modal/ContactDpModal'
 const UserInfoSideBar = () => {
     const [ visible, setVisible ] = useState(false)
     const [ open, setOpen ] = useState(false)
-    console.log(open);
     const { roomChat } = useContext(ConversationContext)
     return (
         <>
@@ -33,7 +32,8 @@ const UserInfoSideBar = () => {
                             <p>{roomChat.name}</p>
                         </div>
                         <div className="USIdescription">
-                            <h4>DESCIPTION</h4>
+                            <p>this contact description</p>
+                            <h4>About</h4>
                         </div>
                     </Container>
                 </Sidebar>

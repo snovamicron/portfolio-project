@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Image } from 'semantic-ui-react'
+import { Container, Modal, Image } from 'semantic-ui-react'
 
 const ContactDpModal = (props) => {
     const { open, setOpen, imageUrl } = props.props
@@ -10,9 +10,14 @@ const ContactDpModal = (props) => {
                 onClose={() => setOpen(false)}
                 onOpen={() => setOpen(true)}
                 size='tiny'
-                dimmer='centered'
+                className='contentDpModal'
             >
-                    <Image size='medium' src={imageUrl} wrapped />
+                 <Modal.Content
+                 as={Container}
+                 className='contentDpModal'
+                 >
+                    <Image src={imageUrl} size='large'></Image>
+                 </Modal.Content>
             </Modal>
         </>
     );
