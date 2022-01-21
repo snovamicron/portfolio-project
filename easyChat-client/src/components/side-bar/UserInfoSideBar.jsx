@@ -1,12 +1,15 @@
 import React, { useState, useContext } from 'react';
 import { Sidebar, Segment, Container } from 'semantic-ui-react';
 import Room from '../room/Room';
+import UserInfo from './side-bar component/UserInfo';
+import SearchInfo from './side-bar component/SearchInfo'
+import RoomWallPaper from '../room/RoomWallPaper';
 import { ConversationContext } from '../../context/ConversationProvider';
-import ContactDpModal from '../modal/ContactDpModal'
+
 
 const UserInfoSideBar = () => {
     const [ visible, setVisible ] = useState(false)
-    const [ open, setOpen ] = useState(false)
+    const [ component, setComponent ] = useState('UserInfo')
     const { roomChat } = useContext(ConversationContext)
     return (
         <>
@@ -22,23 +25,18 @@ const UserInfoSideBar = () => {
                 className='userInfoSideBar'
                 >
                     <Container className='USIcontainer'>
-                        <div className='USIheader'>
-                            <i onClick={()=> setVisible(false)} className='fas fa-arrow-left'/>
-                            <p>Contact Info</p>
-                        </div>
-                        <div className="USIname">
-                        <img onClick={()=> setOpen(true)} src={roomChat.imageUrl} alt="contact dp" />
-                            <ContactDpModal props={{ open, setOpen,imageUrl:roomChat.imageUrl}}/>
-                            <p>{roomChat.name}</p>
-                        </div>
-                        <div className="USIdescription">
-                            <p>this contact description</p>
-                            <h4>About</h4>
-                        </div>
+                        {component === 'UserInfo' && <UserInfo setVisible={setVisible}/>}
+                        {component === 'SearchInfo' && <SearchInfo setVisible={setVisible}/>}
                     </Container>
                 </Sidebar>
                 <Sidebar.Pusher>
-                    <Room setVisible={setVisible}/>
+                    {
+                        Object.keys(roomChat).length > 0 ? <Room props={{
+                            setVisible,
+                            setComponent
+                        }}/>:<RoomWallPaper/>   
+                    }
+                    
                 </Sidebar.Pusher>
         </>
     );

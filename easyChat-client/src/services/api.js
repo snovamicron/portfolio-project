@@ -50,3 +50,36 @@ export const setConversation = async (obj)=>{
         console.log('have error while calling setConversation API ', error.message);
     }
 }
+
+
+
+export const getConversation = async (obj) => {
+    try {
+        const response = await axios({
+            method:'post',
+            url:'/conversation/get',
+            data:{
+                obj
+            }
+        })
+        return response.data
+    } catch (error) {
+        console.log('have error while calling getConversation API ', error.message);
+    }
+}
+
+
+export const setMessage =  async(obj) => {
+    try {
+        const response = await axios({
+            method:'post',
+            url:'/message/set',
+            data:{
+                obj
+            }
+        })
+        return response.data
+    } catch (error) {
+        console.log('have error while calling setMessage API ', error.message);
+    }
+}

@@ -259,12 +259,55 @@ body{
 .roomHeader > div  > i{
   cursor: pointer;
 }
+.roomHeader > div > div {
+  padding: 0 !important;
+  background-color: transparent !important;
+  margin-top: 3px !important;
+}
+.roomHeader > div > div  > i{
+  font-size: 2rem;
+  color: #000000;
+}
 .roomChat{
-  height: 90%;
+  height: 82%;
   border-radius: 0 !important;
   margin: 0 !important;
   background: transparent !important;
-  color: #ffffff !important;
+  padding: 0 !important;
+}
+.roomChat > img {
+  filter: invert(1);
+  opacity: 0.3;
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.roomChat > p {
+ color: #ffffff;
+}
+.roomFooter{
+  width: 100%;
+  height: 8%;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem !important;
+  opacity: 0.89999;
+
+}
+.roomFooter > i{
+  margin: 0 10px;
+}
+.roomFooter > div {
+ width: 100%;
+}
+.roomFooter > div > input{
+  border-radius: 25px !important;
+  border: 2px solid #000000 !important;
+  margin: 0 20px !important;
+  height: 40px;
 }
 .userInfoSideBar{
   padding: 0 !important;
@@ -328,7 +371,48 @@ body{
 .USIdescription > p{
   margin-top: 10px;
 }
+.Search{
+  height: 10%;
+  width: 100%;
+  color: #ffffff;
+  border-bottom: 1px solid #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.Search > div {
+  width: 75%;
+}
+.Search > div > input{
+  background-color: #3E065F !important;
+  border-radius: 60px !important;
+}
+.Result{
+  height: 78%;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px 0;
+}
 
+
+/* css for RoomWallPaper.jsx */
+
+.roomWallpaper{
+  color: #ffffff;
+  height: 93vh !important;
+  /* border: 2px solid #ffffff; */
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+.roomWallpaper > img{
+  filter: invert(1);
+  margin: 20px 0;
+}
 
 /* media qurey for NavBar */
 @media only screen and (max-width: 768px){
