@@ -69,11 +69,11 @@ export const getConversation = async (obj) => {
 }
 
 
-export const setMessage =  async(obj) => {
+export const addMessage =  async(obj) => {
     try {
         const response = await axios({
             method:'post',
-            url:'/message/set',
+            url:'/message/add',
             data:{
                 obj
             }
@@ -81,5 +81,21 @@ export const setMessage =  async(obj) => {
         return response.data
     } catch (error) {
         console.log('have error while calling setMessage API ', error.message);
+    }
+}
+
+
+export const getMessage = async(obj)=>{
+    try {
+        const response = await axios({
+            method:'get',
+            url:'/message/get',
+            headers:{
+                'id':obj.id
+            }
+        })
+        return response.data.messages
+    } catch (error) {
+        console.log('have error while calling getMessage API ', error.message);
     }
 }

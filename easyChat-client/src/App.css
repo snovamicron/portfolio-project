@@ -275,17 +275,54 @@ body{
   background: transparent !important;
   padding: 0 !important;
 }
-.roomChat > img {
-  filter: invert(1);
-  opacity: 0.3;
-  position: absolute !important;
-  top: 0;
-  left: 0;
-  z-index: -1;
-}
+
 .roomChat > p {
  color: #ffffff;
 }
+
+.message{
+  border-radius: 0 !important;
+  height: 100%;
+  background-color: transparent !important;
+  display: flex !important;
+  flex-direction: column;
+  overflow: auto;
+}
+.message > div{
+  display: flex;
+}
+
+.message > div >  span{
+  max-width: 45%;
+  background-color: #ffffff;
+  padding: 3px 10px;
+  margin: 2px 5px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+.message > div >  span > .text{
+  word-wrap: break-word;
+  width: 100%;
+  align-self: flex-start;
+  padding-right: 45px;
+}
+.message > div >  span > .time{
+  align-self: flex-end;
+  font-size: 0.8999rem;
+  
+}
+.message > .left{
+  justify-content: flex-start;
+}
+
+.message > .right{
+  justify-content: flex-end;
+}
+
+
+
+
 .roomFooter{
   width: 100%;
   height: 8%;
@@ -300,14 +337,18 @@ body{
 .roomFooter > i{
   margin: 0 10px;
 }
-.roomFooter > div {
- width: 100%;
-}
-.roomFooter > div > input{
-  border-radius: 25px !important;
-  border: 2px solid #000000 !important;
-  margin: 0 20px !important;
+
+.roomFooter > input{
+  border-radius: 25px ;
+  border: 2px solid #000000 ;
+  margin: 0 20px ;
   height: 40px;
+  width: 100%;
+  padding: 0 20px;
+  font-size: 1.2rem;
+}
+.roomFooter > input::placeholder{
+  font-size: 1.5rem;
 }
 .userInfoSideBar{
   padding: 0 !important;
