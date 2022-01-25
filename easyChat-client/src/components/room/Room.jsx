@@ -6,14 +6,15 @@ import RoomHeader from './RoomHeader'
 
 const Room = ({ props }) => {
     const { setVisible, setComponent } = props
-    const [id, setId] = useState('')
+    const [conversation, setConversation] = useState('')
+    const [value, setValue] = useState('')
 
     return (
         <>
             <Container className='room' columns={1}>
                 <RoomHeader setVisible={setVisible} setComponent={setComponent} />
-                <Chat setId={setId} />
-                <RoomFooter id={id} />
+                <Chat setConversation={setConversation} conversation={conversation} value={value}/>
+                <RoomFooter conversation={conversation} value={value} setValue={setValue} />
             </Container>
         </>
     )

@@ -1,0 +1,19 @@
+{
+  "name": "easychat-socket-server",
+  "version": "1.0.0",
+  "description": "this is the socket.io server for realtime conversation",
+  "main": "index.js",
+  "type":"module",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "soumyadeep mondal",
+  "license": "ISC",
+  "dependencies": {
+    "socket.io": "^4.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

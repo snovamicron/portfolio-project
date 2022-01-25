@@ -1,18 +1,26 @@
 import React, { useContext } from 'react'
 import { Dropdown, Icon } from 'semantic-ui-react'
 import { AccountContext } from '../../context/AccountProvider'
+import { ConversationContext } from '../../context/ConversationProvider'
 import { GoogleLogout } from 'react-google-login'
 
 const Header = ({setVisible}) => {
-    const { accountData, setAccountData } = useContext(AccountContext)
+    const { accountData, setAccountData, socket } = useContext(AccountContext)
+    const { setRoomChat } = useContext(ConversationContext)
+    const socketDataClear = () =>{
+        socket.current.emit('clearUser', accountData.googleId)
+    }
     const logout = ()=>{
-        setAccountData(null)
+        socketDataClear()
+        setAccountData()
+        setRoomChat({})
         console.clear()
     }
+
     return (
         <>
             <div className='chatBoxNavigation'>
-                <img onClick={()=> setVisible(true)} className='chatBoxNavigationAvtar' src={accountData.imageUrl} alt="img" />
+                <img referrerPolicy='no-referrer' onClick={()=> setVisible(true)} className='chatBoxNavigationAvtar' src={accountData.imageUrl} alt="img" />
                 <Dropdown
                     icon='server'
                     floating

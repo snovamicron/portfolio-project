@@ -6,7 +6,7 @@ const router = express.Router()
 router.post('/add', async(req, res)=>{
     try {
         const { senderId, receiverId } = req.body.obj
-        const addedConversation = await ConversationModel.findOne({membres: [senderId, receiverId]}).exec()
+        const addedConversation = await ConversationModel.findOne({membres:{ $all: [senderId, receiverId]}}).exec()
         if (!addedConversation) {
             const conversation = new ConversationModel({
                 membres:[
@@ -28,9 +28,9 @@ router.post('/add', async(req, res)=>{
 router.post('/get', async(req, res)=>{
     try {
         const { senderId, receiverId } = req.body.obj
-        const conversation = await ConversationModel.findOne({membres: [senderId, receiverId]}).exec()
+        const conversation = await ConversationModel.findOne({membres:{ $all: [senderId, receiverId]}}).exec()
         if (conversation) {
-            res.status(200).json({id : conversation._id})
+            res.status(200).json(conversation)
         } else {
             res.send(404).send('conversation not found')
         }

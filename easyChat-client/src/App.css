@@ -242,13 +242,24 @@ body{
   align-items: center;
   margin: 0 !important;
 }
-.roomHeader > img{
+.roomHeader > .avtar{
+  width: 97px;
+  display: flex;
+  margin: 0 30px;
+  justify-content: space-between;
+}
+.roomHeader > .avtar > p{
+  margin-top: 26px;
+  font-size: 1rem;
+  font-weight: 200;
+  color: white;
+}
+.roomHeader > .avtar > img{
   height: 50px;
   border-radius: 60px;
-  margin: 0 20px;
   cursor: pointer;
 }
-.roomHeader > div{
+.roomHeader > .navigation{
   width: 67px;
   text-align: center;
   display: flex;
@@ -256,7 +267,7 @@ body{
   font-size: 1.5rem;
   margin: 0 50px;
 }
-.roomHeader > div  > i{
+.roomHeader > .navigation  > i{
   cursor: pointer;
 }
 .roomHeader > div > div {

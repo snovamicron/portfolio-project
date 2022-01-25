@@ -1,21 +1,32 @@
-import React,{ useState, useContext } from 'react';
+import React,{ useContext } from 'react';
 import { Segment } from 'semantic-ui-react';
 import { addMessage } from '../../services/api';
 import { AccountContext } from '../../context/AccountProvider';
 
-const RoomFooter = ({ id }) => {
-  const [value, setValue] = useState('')
-  const { accountData } = useContext(AccountContext)
+const RoomFooter = ({ conversation, value, setValue }) => {
+  const { accountData, socket } = useContext(AccountContext)
+
+  const receiver = () =>{
+    return conversation.memebres.find( ele => ele !== accountData.googleId)
+  }
+
   const handleMessage = async (e) => {
     if (e.code === 'Enter') {
       setValue('')
       const response = await addMessage({
-        conversationId : id,
+        conversationId : conversation._id,
         senderId: accountData.googleId,
         message: value
 
       })
       console.log(response);
+      
+      socket.current.emit('sendMessage', {
+        senderId: accountData.googleId,
+        receiverId: receiver(),
+        message: value,
+        createdAt: Date.now()
+      })
     }
   }
   return ( 

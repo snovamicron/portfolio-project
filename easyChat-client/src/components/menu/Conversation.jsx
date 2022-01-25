@@ -8,7 +8,7 @@ import { ConversationContext } from '../../context/ConversationProvider'
 
 
 const Conversation = ({ text }) => {
-    const { accountData } = useContext(AccountContext)
+    const { accountData, socket, setActiveUsers } = useContext(AccountContext)
     const { userData, setUserData } = useContext(UserContext)
     const { setRoomChat } = useContext(ConversationContext)
     const { googleId } = accountData
@@ -26,6 +26,12 @@ const Conversation = ({ text }) => {
         getData()
         // eslint-disable-next-line
     }, [])
+    useEffect(() => {
+      socket.current.on('getUsers', users => {
+        setActiveUsers(users)
+      })
+    });
+    
     return (
         <>
             <Grid className='conversation' columns={1}>
@@ -46,7 +52,7 @@ const Conversation = ({ text }) => {
                                 }}
                             >
                                 <div>
-                                    <img src={ele.imageUrl} alt="" />
+                                    <img referrerPolicy='no-referrer' src={ele.imageUrl} alt="" />
                                     <p>{ele.name}</p>
                                 </div>
                             </Grid.Column>

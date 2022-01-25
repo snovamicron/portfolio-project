@@ -1,13 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { Grid } from 'semantic-ui-react'
 import Header from './Header'
 import SearchMenu from './Search.jsx'
 import Conversation from './Conversation'
 import UserProvider from '../../context/UserProvider'
+import { AccountContext  } from '../../context/AccountProvider'
+
 
 
 const Menu = ({ setVisible }) => {
     const [ text, setText ] = useState('')
+    const { accountData , socket } = useContext( AccountContext )
+    useEffect(()=>{
+        socket.current.emit('addUser', accountData.googleId)
+    },[accountData.googleId])
+
     return (
         <>
             <Grid style={{ margin: 0, height: '100%' }}>

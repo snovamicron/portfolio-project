@@ -32,6 +32,7 @@ export const fatchUserData = async (id) => {
         return response.data
     } catch (error) {
         console.log('have error whie calling fatchUserData while API', error.message);
+        return []
     }
 }
 
