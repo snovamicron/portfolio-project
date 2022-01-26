@@ -35,11 +35,14 @@ io.on('connection', (socket)=>{
     //send message
     socket.on('sendMessage', ( data )=> {
         const receiver = sendMessage(data.receiverId)
-        io.to(receiver.socketId).emit('receiveMessage',{
-            senderId : data.senderId,
-            message: data.message,
-            createdAt: data.createdAt
-        })
+        console.log('message send !' + receiver);
+        if(receiver){
+            io.to(receiver.socketId).emit('receiveMessage',{
+                senderId : data.senderId,
+                message: data.message,
+                createdAt: data.createdAt
+            })
+        }
     })
 
     // server disconnect
