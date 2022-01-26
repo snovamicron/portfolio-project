@@ -7,7 +7,7 @@ const RoomFooter = ({ conversation, value, setValue }) => {
   const { accountData, socket } = useContext(AccountContext)
 
   const receiver = () =>{
-    return conversation.memebres.find( ele => ele !== accountData.googleId)
+    return conversation.membres.find( ele => ele !== accountData.googleId)
   }
 
   const handleMessage = async (e) => {

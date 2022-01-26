@@ -11,10 +11,7 @@ const Chat = ({ conversation, setConversation, value }) => {
   const { accountData, socket } = useContext(AccountContext)
   const [messages, setMessages] = useState([])
   const [incomingMessage, setIncomingMessage] = useState({})
-  console.log(incomingMessage);
-  socket.current.on('receiveMessage', (data)=>{
-    setIncomingMessage(data)
-  })
+
 
   const getChatData = async () => {
     const res = await getConversation({
@@ -31,9 +28,16 @@ const Chat = ({ conversation, setConversation, value }) => {
     setMessages(msg)
   }
 
-  useEffect(()=>{
+  useEffect(() => {
+    socket.current.on('receiveMessage', (data) => {
+      console.log(data)
+      setIncomingMessage(data)
+    })
+  },[])
+
+  useEffect(() => {
     setMessages([...messages, incomingMessage])
-  }, [incomingMessage, roomChat.googleId])
+  },[incomingMessage,roomChat.googleId])
 
   useEffect(() => {
     getChatData()
