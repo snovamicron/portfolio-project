@@ -7,14 +7,14 @@ import RoomHeader from './RoomHeader'
 const Room = ({ props }) => {
     const { setVisible, setComponent } = props
     const [conversation, setConversation] = useState('')
-    const [value, setValue] = useState('')
+    const [reload, setReload] = useState(false)
 
     return (
         <>
             <Container className='room' columns={1}>
                 <RoomHeader setVisible={setVisible} setComponent={setComponent} />
-                <Chat setConversation={setConversation} conversation={conversation} value={value}/>
-                <RoomFooter conversation={conversation} value={value} setValue={setValue} />
+                <Chat setConversation={setConversation} conversation={conversation} reload={reload} setReload={setReload}/>
+                <RoomFooter conversation={conversation} setReload={setReload}/>
             </Container>
         </>
     )

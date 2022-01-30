@@ -8,7 +8,7 @@ import { ConversationContext } from '../../context/ConversationProvider'
 
 
 const Conversation = ({ text }) => {
-    const { accountData, socket, setActiveUsers } = useContext(AccountContext)
+    const { accountData, socket, setActiveUsers, messages } = useContext(AccountContext)
     const { userData, setUserData } = useContext(UserContext)
     const { setRoomChat } = useContext(ConversationContext)
     const { googleId } = accountData
@@ -21,6 +21,12 @@ const Conversation = ({ text }) => {
         setRoomChat(conversation)
         const response = await setConversation(conversationInfo)
         console.log(response);
+    }
+    const lastMessage = ()=>{
+        // return messages.find((ele,i) => i === (messages.length - 1))
+        console.log(messages.length)
+        console.log(messages[messages.length - 1].message)
+        return ( messages[messages.length - 1].message)
     }
     useEffect(() => {
         getData()
@@ -53,7 +59,8 @@ const Conversation = ({ text }) => {
                             >
                                 <div>
                                     <img referrerPolicy='no-referrer' src={ele.imageUrl} alt="" />
-                                    <p>{ele.name}</p>
+                                    <p className='name'>{ele.name}</p>
+                                    <p className="lastMessage">{lastMessage()}</p>
                                 </div>
                             </Grid.Column>
                         )

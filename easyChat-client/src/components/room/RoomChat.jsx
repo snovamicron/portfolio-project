@@ -6,10 +6,9 @@ import { getConversation } from '../../services/api'
 import { getMessage } from '../../services/api'
 import Messages from './Messages'
 
-const Chat = ({ conversation, setConversation, value }) => {
+const Chat = ({ conversation, setConversation, reload, setReload }) => {
   const { roomChat } = useContext(ConversationContext)
-  const { accountData, socket } = useContext(AccountContext)
-  const [messages, setMessages] = useState([])
+  const { accountData, socket, messages, setMessages } = useContext(AccountContext)
   const [incomingMessage, setIncomingMessage] = useState({})
 
 
@@ -26,6 +25,7 @@ const Chat = ({ conversation, setConversation, value }) => {
   const handleMessageCall = async () => {
     const msg = await getMessage({ id: conversation._id })
     setMessages(msg)
+    setReload(false)
   }
 
   useEffect(() => {
@@ -45,7 +45,7 @@ const Chat = ({ conversation, setConversation, value }) => {
 
   useEffect(() => {
     handleMessageCall()
-  }, [value])
+  }, [reload])
 
   return (
     <>

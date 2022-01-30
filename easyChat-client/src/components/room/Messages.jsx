@@ -1,9 +1,17 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef, useEffect } from 'react';
 import { Container } from 'semantic-ui-react';
 import { AccountContext } from '../../context/AccountProvider';
 
 const Messages = ({ messages }) => {
+  const scrollDown = useRef(null)
+  const scrollToBottom = ()=>{
+    scrollDown.current?.scrollIntoView({ behavior: 'smooth'})
+  }
   const { accountData } = useContext(AccountContext)
+
+  useEffect(()=>{
+    scrollToBottom()
+  }, [messages])
   return (
     <>
       <Container className='message'>
@@ -39,6 +47,7 @@ const Messages = ({ messages }) => {
               }
             })
           }
+          <div ref={scrollDown}></div>
       </Container>
     </>
   )

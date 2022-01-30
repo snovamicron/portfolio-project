@@ -1,9 +1,10 @@
-import React,{ useContext } from 'react';
+import React,{ useContext, useState } from 'react';
 import { Segment } from 'semantic-ui-react';
 import { addMessage } from '../../services/api';
 import { AccountContext } from '../../context/AccountProvider';
 
-const RoomFooter = ({ conversation, value, setValue }) => {
+const RoomFooter = ({ conversation, setReload }) => {
+  const [value, setValue] = useState('')
   const { accountData, socket } = useContext(AccountContext)
 
   const receiver = () =>{
@@ -12,6 +13,7 @@ const RoomFooter = ({ conversation, value, setValue }) => {
 
   const handleMessage = async (e) => {
     if (e.code === 'Enter') {
+      setReload(true)
       setValue('')
       const response = await addMessage({
         conversationId : conversation._id,

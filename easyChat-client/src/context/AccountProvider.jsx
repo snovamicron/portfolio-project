@@ -7,6 +7,7 @@ const AccountProvider = (porps) => {
 
     const [accountData, setAccountData] = useState()
     const [activeUsers, setActiveUsers] = useState([])
+    const [messages, setMessages] = useState([])
     
     const socket = useRef(null)
 
@@ -21,7 +22,9 @@ const AccountProvider = (porps) => {
             setAccountData,
             socket,
             activeUsers,
-            setActiveUsers
+            setActiveUsers,
+            messages,
+            setMessages
         }}>
             {porps.children}
         </AccountContext.Provider>

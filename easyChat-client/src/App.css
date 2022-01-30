@@ -217,10 +217,11 @@ body{
   border-radius: 30px;
   margin-right: 20px;
 }
-.conversationList > div >p{
+.conversationList > div > .name{
   color: aqua;
   font-size: 1.2rem;
   font-weight: 600;
+  align-self: flex-start;
 }
 
 
@@ -298,6 +299,11 @@ body{
   display: flex !important;
   flex-direction: column;
   overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.message::-webkit-scrollbar{
+  display: none;
 }
 .message > div{
   display: flex;
@@ -351,7 +357,8 @@ body{
 
 .roomFooter > input{
   border-radius: 25px ;
-  border: 2px solid #000000 ;
+  border: 1.7px solid #000000 ;
+  outline: none;
   margin: 0 20px ;
   height: 40px;
   width: 100%;
