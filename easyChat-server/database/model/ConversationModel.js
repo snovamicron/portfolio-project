@@ -5,6 +5,9 @@ const ConversationSchema = new mongoose.Schema({
         type: Array,
         required: true
     },
+    message:{
+        type: String
+    },
     date:{
         type: Date,
         default: Date.now

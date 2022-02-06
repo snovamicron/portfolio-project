@@ -1,5 +1,6 @@
 import express from 'express'
 import MessageModel from '../database/model/MessageModel.js'
+import ConversationModel from '../database/model/ConversationModel.js'
 
 const router = express.Router()
 
@@ -13,6 +14,7 @@ router.post('/add', async (req, res)=>{
             message
         })
         await newMessage.save()
+        await ConversationModel.findByIdAndUpdate(conversationId, { message })
         res.status(200).send(' message saved successfully ')
     } catch (error) {
       res.status(500).send(' Internal server error ')

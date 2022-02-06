@@ -211,19 +211,27 @@ body{
   display: flex;
   align-items: center;
 }
+.conversationList > div > div{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 .conversationList > div >img{
   cursor: pointer;
   height: 40px;
   border-radius: 30px;
   margin-right: 20px;
 }
-.conversationList > div > .name{
+.conversationList > div > div > .name{
   color: aqua;
   font-size: 1.2rem;
   font-weight: 600;
   align-self: flex-start;
+  margin: 0;
 }
-
+.conversationList > div > div > .lastMessage{
+  margin-left: 15px;
+}
 
 
 
