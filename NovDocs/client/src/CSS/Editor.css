@@ -1,0 +1,27 @@
+
+.container{
+    background-color: #f8f9fa;
+    width: 100vw;
+    height: auto;
+    margin: 0;
+    /* border: 1px solid black; */
+}
+
+.ql-container.ql-snow{
+    background-color: #ffffff;
+    height: 100vh;
+    width: 55%;
+    margin: 15px auto;
+    /* margin-top: 15px; */
+    border: 00 !important;
+    box-shadow: 1px 1px 10px 1px #3f3e3e;
+}
+
+.ql-toolbar.ql-snow{
+    /* background-color: red; */
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #f8f9fa;
+}
