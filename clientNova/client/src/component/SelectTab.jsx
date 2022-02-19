@@ -9,10 +9,13 @@ import TabPanel from '@mui/lab/TabPanel'
 import { makeStyles } from '@mui/styles'
 
 const useStyles = makeStyles({
-    tabs:{
+    component:{
         // border:'2px solid black',
         padding:10,
         margin:'10px 0'
+    },
+    tab:{
+        textTransform:'none !important'
     }
 })
 
@@ -27,13 +30,13 @@ const SelectTab = () => {
 
     return (
         <>
-            <Box className={classes.tabs}>
+            <Box className={classes.component}>
                 <TabContext value={value}>
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                        <TabList onChange={handleChange} aria-label="lab API tabs example">
-                            <Tab label="Item One" value="1" />
-                            <Tab label="Item Two" value="2" />
-                            <Tab label="Item Three" value="3" />
+                        <TabList TabIndicatorProps={{ sx:{backgroundColor:'red', bottom:2, height:3}}} onChange={handleChange} textColor='none'>
+                            <Tab className={classes.tab} label="Item One" value="1" />
+                            <Tab className={classes.tab} label="Item Two" value="2" />
+                            <Tab className={classes.tab} label="Item Three" value="3" />
                         </TabList>
                     </Box>
                     <TabPanel value="1">Soumyadeep</TabPanel>

@@ -4,29 +4,28 @@ import {
     Box,
     Select,
     MenuItem,
-    InputLabel,
     FormControl,
     TextField,
-    Button
+    Button,
 } from '@mui/material'
-import { width } from '@mui/system'
 
 const useStyles = makeStyles({
     method: {
-        width:'120px'
+        width:'100px',
+        height:40
+
     },
     input:{
-        width:'800px',
-        margin:'0 3px !important'
-    },
-    button:{
-        height:'100%'
+        width:'70%',
+        margin:'0 8px 0 0 !important',
     },
     besic:{
-        // border:'2px solid black',
-        height:'55px',
+        width:'auto',
+        // border:'2px solid black',   
+        display:'flex',
+        alignItems:'center',
+        justifyContent:'center',
         padding:'2px',
-        textAlign:'center'
     }
 })
 
@@ -42,11 +41,9 @@ const Form = () => {
     return (
         <>
            <Box className={classes.besic}>
-            <FormControl className={classes.method}>
-           <InputLabel id="demo-simple-select-label">METHOD</InputLabel>
+            <FormControl>
            <Select
                 value={method}
-                label="METHOD"
                 onChange={handleChange}
                 className={classes.method}
             >
@@ -58,8 +55,8 @@ const Form = () => {
                 <MenuItem value='HEAD'>HEAD</MenuItem>
             </Select>
             </FormControl>
-            <TextField className={classes.input} label='URL' variant='outlined'/>
-            <Button className={classes.button} variant='contained'>SEND</Button>
+            <TextField className={classes.input} size='small' label='URL' variant='outlined'/>
+            <Button size='large' variant='contained'>SEND</Button>
            </Box>
         </>
     )
