@@ -9,7 +9,7 @@ const useStyles = makeStyles({
   component: {
     // border:'2px solid #000000',
     width:'70%',
-    margin:'auto'
+    margin:'40px auto',
   }
 })
 
@@ -17,7 +17,7 @@ const Home = () => {
   const classes = useStyles()
   return (
     <>
-        <Header />
+        <Header/>
       <Box className={classes.component}>
         <Form />
         <SelectTab/>
