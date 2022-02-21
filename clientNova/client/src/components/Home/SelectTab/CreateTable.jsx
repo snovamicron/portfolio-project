@@ -6,7 +6,7 @@ import { Typography ,
   TableRow,
   TableCell
 } from '@mui/material'
-import AddRow from './AddRow'
+import AddRow from './CreateTable/AddRow'
 import { makeStyles } from '@mui/styles'
 
 const useStyles = makeStyles({
@@ -17,6 +17,9 @@ const useStyles = makeStyles({
   tableCell:{
     border:'1px solid rgb(224, 224, 224, 1)',
     padding:'9px !important'
+  },
+  title:{
+    margin:'10px 0 !important' 
   }
 })
 
@@ -26,7 +29,7 @@ const CreateTable = ({ Text }) => {
 
   return (
     <>
-        <Typography>{Text}</Typography>
+        <Typography className={classes.title}>{Text}</Typography>
         <Table className={classes.component}>
           <TableHead>
             <TableRow>

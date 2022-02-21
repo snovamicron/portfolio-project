@@ -7,8 +7,8 @@ import TabContext from '@mui/lab/TabContext'
 import TabList from '@mui/lab/TabList'
 import TabPanel from '@mui/lab/TabPanel'
 import { makeStyles } from '@mui/styles'
-import CreateTable from './CreateTable'
-import JsonTextFiled from './JsonTextFiled'
+import CreateTable from './SelectTab/CreateTable'
+import JsonTextFiled from './SelectTab/JsonTextFiled'
 
 const useStyles = makeStyles({
     component:{

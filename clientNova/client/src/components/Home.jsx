@@ -1,9 +1,10 @@
 import React from 'react'
-import Form from './Form'
-import Header from './Header'
+import Form from './Home/Form'
+import Header from './Home/Header'
 import { makeStyles } from '@mui/styles'
 import { Box } from '@mui/system'
-import SelectTab from './SelectTab'
+import SelectTab from './Home/SelectTab'
+import Responce from './Home/Responce'
 
 const useStyles = makeStyles({
   component: {
@@ -21,6 +22,7 @@ const Home = () => {
       <Box className={classes.component}>
         <Form />
         <SelectTab/>
+        <Responce/>
       </Box>
     </>
   )

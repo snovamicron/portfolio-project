@@ -1,10 +1,17 @@
-import { TextareaAutosize } from '@mui/material'
+import { TextareaAutosize, Typography } from '@mui/material'
+import { makeStyles } from '@mui/styles'
 import React from 'react'
+
+const useStyles = makeStyles({
+  component:{
+    margin:'10px 0 !important'
+  }
+})
 
 const JsonTextFiled = () => {
 
     const textAreaStyle = {
-        width:'100%',
+        width:'90%',
         height:'100px',
         background: `url(http://i.imgur.com/2cOaJ.png)`,
         backgroundAttachment: 'local',
@@ -13,8 +20,11 @@ const JsonTextFiled = () => {
         borderColor:'#ccc'
     }
 
+    const classes = useStyles()
+
   return (
     <>
+    <Typography className={classes.component}>JSON</Typography>
     <TextareaAutosize 
     minRows={3}
     maxRows={7}
