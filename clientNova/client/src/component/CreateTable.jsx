@@ -15,7 +15,8 @@ const useStyles = makeStyles({
     borderCollapse:'collapse'
   },
   tableCell:{
-    border:'1px solid rgb(224, 224, 224, 1)'
+    border:'1px solid rgb(224, 224, 224, 1)',
+    padding:'9px !important'
   }
 })
 

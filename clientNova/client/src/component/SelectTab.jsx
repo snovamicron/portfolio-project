@@ -8,6 +8,7 @@ import TabList from '@mui/lab/TabList'
 import TabPanel from '@mui/lab/TabPanel'
 import { makeStyles } from '@mui/styles'
 import CreateTable from './CreateTable'
+import JsonTextFiled from './JsonTextFiled'
 
 const useStyles = makeStyles({
     component:{
@@ -47,7 +48,7 @@ const SelectTab = () => {
                     <CreateTable Text='Header'/>
                     </TabPanel>
                     <TabPanel value="3">
-                    <CreateTable Text='Body'/>
+                        <JsonTextFiled/>
                     </TabPanel>
                 </TabContext>
             </Box>
