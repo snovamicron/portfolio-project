@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import { makeStyles } from '@mui/styles'
 import {
     Box,
@@ -8,6 +8,7 @@ import {
     TextField,
     Button,
 } from '@mui/material'
+import { DataContext } from '../../context/DataContext'
 
 const useStyles = makeStyles({
     method: {
@@ -32,10 +33,10 @@ const useStyles = makeStyles({
 const Form = () => {
 
     const classes = useStyles()
-    const [method, setMethod] = React.useState('');
+    const { formData, setFormData } = useContext(DataContext)
 
     const handleChange = (event) => {
-        setMethod(event.target.value);
+        setFormData(event.target.value);
     };
 
     return (
@@ -43,7 +44,7 @@ const Form = () => {
            <Box className={classes.besic}>
             <FormControl>
            <Select
-                value={method}
+                value={formData}
                 onChange={handleChange}
                 className={classes.method}
             >

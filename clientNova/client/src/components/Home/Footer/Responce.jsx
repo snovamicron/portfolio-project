@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, TextareaAutosize } from '@mui/material'
+import { Box, TextareaAutosize, Typography } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 
 const useStyles = makeStyles({
@@ -25,11 +25,13 @@ const Responce = () => {
     }
   return (
     <>
+    <Typography mt={3} mb={2}>Response</Typography>
     <Box className={classes.component}>
     <TextareaAutosize 
     minRows={3}
     maxRows={7}
     style={textAreaStyle}
+    disabled='disabled'
     >
 
     </TextareaAutosize>

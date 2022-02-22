@@ -12,7 +12,7 @@ const JsonTextFiled = () => {
 
     const textAreaStyle = {
         width:'90%',
-        height:'100px',
+        height:'70px',
         background: `url(http://i.imgur.com/2cOaJ.png)`,
         backgroundAttachment: 'local',
         backgroundRepeat: 'no-repeat',
@@ -27,7 +27,7 @@ const JsonTextFiled = () => {
     <Typography className={classes.component}>JSON</Typography>
     <TextareaAutosize 
     minRows={3}
-    maxRows={7}
+    maxRows={5}
     style={textAreaStyle}
     >
 
