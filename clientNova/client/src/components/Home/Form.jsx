@@ -36,15 +36,19 @@ const Form = () => {
     const { formData, setFormData } = useContext(DataContext)
 
     const handleChange = (event) => {
-        setFormData(event.target.value);
-    };
+        setFormData({ formData , type: event.target.value});
+    }
+
+    const onUrlChange = (event) => {
+        setFormData({ ...formData, data: event.target.value})
+    }
 
     return (
         <>
            <Box className={classes.besic}>
             <FormControl>
            <Select
-                value={formData}
+                value={formData.type}
                 onChange={handleChange}
                 className={classes.method}
             >
@@ -56,7 +60,7 @@ const Form = () => {
                 <MenuItem value='HEAD'>HEAD</MenuItem>
             </Select>
             </FormControl>
-            <TextField className={classes.input} size='small' label='URL' variant='outlined'/>
+            <TextField onChange={onUrlChange} className={classes.input} size='small' label='URL' variant='outlined'/>
             <Button size='large' variant='contained'>SEND</Button>
            </Box>
         </>

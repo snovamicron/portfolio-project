@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
     TableRow,
     TableCell,
@@ -21,13 +21,24 @@ const useStyles = makeStyles({
     }
 })
 
-const AddRow = () => {
+const AddRow = ({ rowId, addRows }) => {
     const classes = useStyles()
+    const [checkBoxValue, setCheckBoxValue] = useState(false)
+
+    const handleCheckBox = (e)=>{
+        if(!checkBoxValue){
+            setCheckBoxValue(true)
+            addRows(oldArr => [...oldArr, rowId])
+        }else{
+            setCheckBoxValue(false)
+        }
+    }
+
   return (
     <>
      <TableRow>
          <TableCell className={classes.component}>
-            <Checkbox size='large' className={classes.checkbox}/>
+            <Checkbox onChange={handleCheckBox} checked={checkBoxValue} size='large' className={classes.checkbox}/>
          </TableCell>
          <TableCell className={classes.component}>
             <TextField inputProps={{style:{height:'30px' , padding:'0 5px'}}} className={classes.text} />

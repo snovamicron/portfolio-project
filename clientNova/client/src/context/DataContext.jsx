@@ -3,7 +3,10 @@ import react, { createContext, useState } from 'react'
 export const DataContext = createContext()
 
 const DataContexProvider = ({children}) =>{
-    const [ formData, setFormData ] = useState('POST') 
+    const [ formData, setFormData ] = useState({
+        data:'',
+        type:'POST'
+    }) 
     return (
         <DataContext.Provider value={{
             formData,
