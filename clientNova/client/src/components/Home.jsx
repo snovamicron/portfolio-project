@@ -6,6 +6,7 @@ import { Box } from '@mui/system'
 import SelectTab from './Home/SelectTab'
 import Responce from './Home/Footer/Responce'
 import ErrorScreen from './Home/Footer/ErrorScreen'
+import TableRowsContextProvider from '../context/TableRowsContext'
 
 const useStyles = makeStyles({
   component: {
@@ -22,7 +23,9 @@ const Home = () => {
         <Header/>
       <Box className={classes.component}>
         <Form />
+        <TableRowsContextProvider>
         <SelectTab/>
+        </TableRowsContextProvider>
         {/* <Responce/> */}
         <ErrorScreen/>
       </Box>

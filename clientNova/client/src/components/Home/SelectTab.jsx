@@ -42,7 +42,7 @@ const SelectTab = () => {
                         </TabList>
                     </Box>
                     <TabPanel value="1">
-                        <CreateTable Text='Querry Params'/>
+                        <CreateTable Text='Querry Param'/>
                     </TabPanel>
                     <TabPanel value="2">
                     <CreateTable Text='Header'/>

@@ -21,18 +21,20 @@ const useStyles = makeStyles({
     }
 })
 
-const AddRow = ({ rowId, addRows }) => {
+const AddRow = ({ rowId, addRows, Text, rows }) => {
     const classes = useStyles()
     const [checkBoxValue, setCheckBoxValue] = useState(false)
 
     const handleCheckBox = (e)=>{
         if(!checkBoxValue){
             setCheckBoxValue(true)
-            addRows(oldArr => [...oldArr, rowId])
+            Text === 'Header'?addRows({ ...rows, headers:[...rows.headers, rowId]}):
+            addRows({...rows, params:[...rows.params, rowId]})
         }else{
             setCheckBoxValue(false)
         }
     }
+
 
   return (
     <>
