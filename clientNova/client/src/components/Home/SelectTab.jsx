@@ -1,56 +1,64 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import {
     Box,
     Tab,
+    Tabs
 } from '@mui/material'
-import TabContext from '@mui/lab/TabContext'
-import TabList from '@mui/lab/TabList'
-import TabPanel from '@mui/lab/TabPanel'
 import { makeStyles } from '@mui/styles'
 import CreateTable from './SelectTab/CreateTable'
 import JsonTextFiled from './SelectTab/JsonTextFiled'
+import { DataContext } from '../../context/DataContext'
 
 const useStyles = makeStyles({
-    component:{
+    component: {
         // border:'2px solid black',
-        padding:10,
-        margin:'10px 0'
+        padding: 10,
+        margin: '10px 0'
     },
-    tab:{
-        textTransform:'none !important'
+    tab: {
+        textTransform: 'none !important'
     }
 })
 
 const SelectTab = () => {
     const classes = useStyles()
-    const [value, setValue] = useState('1');
+    const [value, setValue] = useState(0);
+    const { paramData, setParamData, headerData, setHeaderData } = useContext(DataContext)
 
     const handleChange = (event, newValue) => {
-      setValue(newValue);   
+        setValue(newValue);
     };
 
 
     return (
         <>
             <Box className={classes.component}>
-                <TabContext value={value}>
-                    <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                        <TabList TabIndicatorProps={{ sx:{backgroundColor:'red', bottom:2, height:3}}} onChange={handleChange} textColor='none'>
-                            <Tab className={classes.tab} label="Params" value="1" />
-                            <Tab className={classes.tab} label="Header" value="2" />
-                            <Tab className={classes.tab} label="Body" value="3" />
-                        </TabList>
-                    </Box>
-                    <TabPanel value="1">
-                        <CreateTable Text='Querry Param'/>
-                    </TabPanel>
-                    <TabPanel value="2">
-                    <CreateTable Text='Header'/>
-                    </TabPanel>
-                    <TabPanel value="3">
-                        <JsonTextFiled/>
-                    </TabPanel>
-                </TabContext>
+
+                <Tabs value={value} onChange={handleChange} TabIndicatorProps={{ sx: { backgroundColor: 'red', bottom: 2, height: 3 } }} onChange={handleChange} textColor='none'>
+                    <Tab className={classes.tab} label="Params" />
+                    <Tab className={classes.tab} label="Header" />
+                    <Tab className={classes.tab} label="Body" />
+                </Tabs>
+                <Box
+                    role="tabpanel"
+                    hidden={value !== 0}
+                >
+                    <CreateTable Text='Querry Param' data={paramData} setData={setParamData}/>
+
+                </Box>
+                <Box
+                    role="tabpanel"
+                    hidden={value !== 1}
+                >
+                    <CreateTable Text='Header' data={headerData} setData={setHeaderData} />
+
+                </Box>
+                <Box
+                    role="tabpanel"
+                    hidden={value !== 2}
+                >
+                    <JsonTextFiled />
+                </Box>
             </Box>
         </>
     )

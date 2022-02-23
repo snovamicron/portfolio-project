@@ -9,7 +9,6 @@ import {
 } from '@mui/material'
 import AddRow from './CreateTable/AddRow'
 import { makeStyles } from '@mui/styles'
-import { TableRowsContext } from '../../../context/TableRowsContext'
 
 const useStyles = makeStyles({
   component: {
@@ -25,16 +24,11 @@ const useStyles = makeStyles({
   }
 })
 
-const CreateTable = ({ Text, Rows }) => {
+const CreateTable = ({ Text, data, setData }) => {
 
   const classes = useStyles()
-  // const [rows, addRows] = useState([0])
-  
-  // const [paramsRows, addParamRows] = useState([0])
-  // const [headerRows, addHeaderRows] = useState([0])
+  const [rows, addRows] = useState([0])
 
-  const { rows, addRows} = useContext(TableRowsContext) 
-  
   return (
     <>
       <Typography className={classes.title}>{Text}</Typography>
@@ -48,21 +42,13 @@ const CreateTable = ({ Text, Rows }) => {
         </TableHead>
         <TableBody>
           {
-            Text === 'Header'?rows.headers.map((row, index) => {
+            rows.map((row, index) => {
               return <AddRow
                 addRows={addRows}
-                rows={rows}
                 rowId={index}
                 key={index}
-                Text={Text}
-              />
-            }):rows.params.map((row, index) => {
-              return <AddRow
-                addRows={addRows}
-                rows={rows} 
-                rowId={index}
-                key={index}
-                Text={Text}
+                data={data}
+                setData={setData}
               />
             })
           }

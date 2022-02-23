@@ -7,10 +7,16 @@ const DataContexProvider = ({children}) =>{
         data:'',
         type:'POST'
     }) 
+    const [paramData, setParamData] = useState([])
+    const [HeaderData, setHeaderData] = useState([])
     return (
         <DataContext.Provider value={{
             formData,
-            setFormData
+            setFormData,
+            paramData,
+            setParamData,
+            HeaderData,
+            setHeaderData
         }}>
             {children}
         </DataContext.Provider>
