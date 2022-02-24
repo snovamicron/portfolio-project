@@ -1,6 +1,7 @@
 import { TextareaAutosize, Typography } from '@mui/material'
 import { makeStyles } from '@mui/styles'
-import React from 'react'
+import React, { useContext } from 'react'
+import { DataContext } from '../../../context/DataContext'
 
 const useStyles = makeStyles({
   component:{
@@ -22,6 +23,12 @@ const JsonTextFiled = () => {
 
     const classes = useStyles()
 
+    const { setJsonText } = useContext(DataContext)
+
+    const handleTextChange = (e)=>{
+      setJsonText(e.target.value)
+    }
+
   return (
     <>
     <Typography className={classes.component}>JSON</Typography>
@@ -29,6 +36,7 @@ const JsonTextFiled = () => {
     minRows={3}
     maxRows={5}
     style={textAreaStyle}
+    onChange={handleTextChange}
     >
 
     </TextareaAutosize>

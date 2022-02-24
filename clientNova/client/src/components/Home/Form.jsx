@@ -30,7 +30,7 @@ const useStyles = makeStyles({
     }
 })
 
-const Form = () => {
+const Form = ({ onSendClick }) => {
 
     const classes = useStyles()
     const { formData, setFormData } = useContext(DataContext)
@@ -40,7 +40,7 @@ const Form = () => {
     }
 
     const onUrlChange = (event) => {
-        setFormData({ ...formData, data: event.target.value})
+        setFormData({ ...formData, url: event.target.value})
     }
 
     return (
@@ -61,7 +61,7 @@ const Form = () => {
             </Select>
             </FormControl>
             <TextField onChange={onUrlChange} className={classes.input} size='small' label='URL' variant='outlined'/>
-            <Button size='large' variant='contained'>SEND</Button>
+            <Button onClick={onSendClick} size='large' variant='contained'>SEND</Button>
            </Box>
         </>
     )

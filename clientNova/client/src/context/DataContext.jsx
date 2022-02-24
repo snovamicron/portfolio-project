@@ -4,11 +4,12 @@ export const DataContext = createContext()
 
 const DataContexProvider = ({children}) =>{
     const [ formData, setFormData ] = useState({
-        data:'',
+        url:'',
         type:'POST'
     }) 
     const [paramData, setParamData] = useState([])
     const [HeaderData, setHeaderData] = useState([])
+    const [jsonText, setJsonText] = useState('')
     return (
         <DataContext.Provider value={{
             formData,
@@ -16,7 +17,9 @@ const DataContexProvider = ({children}) =>{
             paramData,
             setParamData,
             HeaderData,
-            setHeaderData
+            setHeaderData,
+            jsonText,
+            setJsonText
         }}>
             {children}
         </DataContext.Provider>
