@@ -11,6 +11,7 @@ import SelectTab from './Home/SelectTab'
 import Responce from './Home/Footer/Responce'
 import ErrorScreen from './Home/Footer/ErrorScreen'
 import SnackBar from './Home/SnackBar'
+import { GetData } from '../services/Api'
 
 
 const useStyles = makeStyles({
@@ -28,11 +29,13 @@ const Home = () => {
   const [error, setError] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
 
-  const onSendClick = () => {
+  const onSendClick = async () => {
     if (!CheckValidation(paramData, headerData, formData, jsonText, setErrorMsg)) {
       setError(true)
       return false
     }
+
+    const response = await GetData(paramData, headerData, formData, jsonText)
   }
   return (
     <>

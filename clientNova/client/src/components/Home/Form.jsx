@@ -36,7 +36,7 @@ const Form = ({ onSendClick }) => {
     const { formData, setFormData } = useContext(DataContext)
 
     const handleChange = (event) => {
-        setFormData({ formData , type: event.target.value});
+        setFormData({ ...formData , type: event.target.value});
     }
 
     const onUrlChange = (event) => {

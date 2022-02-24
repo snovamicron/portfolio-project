@@ -28,4 +28,17 @@ const CheckValidation = (paramData, headerData, formData, jsonText, setErrorMsg)
 
 }
 
+
+export const GetHeaderAndParamsData = (objArr) => {
+    let obj = {}
+    objArr.forEach(data => {
+        console.log(data.hasOwnProperty('checked'));
+        if(data.hasOwnProperty('checked') && data.checked){
+            obj = { ...obj, [data.key]: data.value}
+        }
+    })
+
+    return obj
+}
+
 export default CheckValidation
