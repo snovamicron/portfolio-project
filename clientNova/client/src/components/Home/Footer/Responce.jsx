@@ -12,7 +12,7 @@ const useStyles = makeStyles({
     }
 })
 
-const Responce = () => {
+const Responce = ({ responseData }) => {
     const classes = useStyles()
     const textAreaStyle = {
         width:'100%',
@@ -23,6 +23,19 @@ const Responce = () => {
         padding:'10px 35px',
         borderColor:'#ccc'
     }
+
+    let obj = responseData
+    let readableObj = '{\n'
+    for(let key in obj){
+      readableObj += '\t'
+      readableObj += typeof(obj[key]) === 'string' ? `${key}:"${obj[key]}"` : `${key}:${obj[key]}`
+      if(Object.keys(obj).pop() !== key.toString()){
+        readableObj += ',\n'
+      }
+    }
+     readableObj += '\n}'
+
+
   return (
     <>
     <Typography mt={3} mb={2}>Response</Typography>
@@ -32,6 +45,7 @@ const Responce = () => {
     maxRows={7}
     style={textAreaStyle}
     disabled='disabled'
+    value={readableObj}
     >
 
     </TextareaAutosize>

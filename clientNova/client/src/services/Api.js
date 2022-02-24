@@ -20,6 +20,6 @@ export const GetData = async (paramData, headerData, formData, jsonText) =>{
         return response
     } catch (error) {
         console.log('Get error while calling GetData', error)
-        return 'Error'
+        return 'error'
     }
 }

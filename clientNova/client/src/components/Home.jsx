@@ -28,6 +28,8 @@ const Home = () => {
   const { paramData, headerData, formData, jsonText } = useContext(DataContext)
   const [error, setError] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
+  const [responseError, setResponseError] = useState(false)
+  const [responseData, setResponseData] = useState({})
 
   const onSendClick = async () => {
     if (!CheckValidation(paramData, headerData, formData, jsonText, setErrorMsg)) {
@@ -36,15 +38,24 @@ const Home = () => {
     }
 
     const response = await GetData(paramData, headerData, formData, jsonText)
+
+    if(response === 'error'){
+      setResponseError(true)
+      return
+    }
+
+    setResponseData(response.data)
+    setResponseError(false)
   }
+
+ 
   return (
     <>
       <Header />
       <Box className={classes.component}>
         <Form onSendClick={onSendClick} />
         <SelectTab />
-        {/* <Responce/> */}
-        <ErrorScreen />
+        {responseError ? <ErrorScreen/> : <Responce responseData={responseData}/>}
         {error && <SnackBar error={error} setError={setError} errorMsg={errorMsg} />}
       </Box>
     </>
