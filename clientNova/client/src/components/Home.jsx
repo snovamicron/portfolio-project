@@ -29,7 +29,7 @@ const Home = () => {
   const [error, setError] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
   const [responseError, setResponseError] = useState(false)
-  const [responseData, setResponseData] = useState({})
+  const [responseData, setResponseData] = useState()
 
   const onSendClick = async () => {
     if (!CheckValidation(paramData, headerData, formData, jsonText, setErrorMsg)) {

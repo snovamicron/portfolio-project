@@ -24,17 +24,72 @@ const Responce = ({ responseData }) => {
         borderColor:'#ccc'
     }
 
-    let obj = responseData
-    let readableObj = '{\n'
-    for(let key in obj){
-      readableObj += '\t'
-      readableObj += typeof(obj[key]) === 'string' ? `${key}:"${obj[key]}"` : `${key}:${obj[key]}`
-      if(Object.keys(obj).pop() !== key.toString()){
-        readableObj += ',\n'
+ 
+    // const readableArray_1 = (array)=>{
+    //   let arr = '[\n'
+    //   for(let obj of array){
+    //     arr += '\t'
+    //     arr += readableObj_1(obj)
+    //     arr += ',\n'
+    //   }
+    //   arr += ']'
+    //   return arr
+    // }
+    
+    const readableObj_1 = (obj)=>{
+      let Obj = '{\n'
+      for(let key in obj){
+        Obj += '\t'
+        if( typeof(obj[key]) === 'string'){
+          Obj += `${key}:"${obj[key]}"`
+        }else if( typeof(obj[key]) === 'object'){
+          Obj += `${key}:${obj[key]}`
+        }else {
+          Obj += `${key}:${obj[key]}`
+        }
+        if(Object.keys(obj).pop() !== key.toString()){
+        Obj += ',\n'
+        }
       }
-    }
-     readableObj += '\n}'
+       Obj += '\t}'
+       return Obj
+      }
+  
 
+    const readableArray = (array)=>{
+      let arr = '[\n'
+      for(let obj of array){
+        arr += '\t'
+        arr += readableObj_1(obj)
+        arr += ',\n'
+      }
+      arr += ']'
+      return arr
+    }
+
+    const readableObj = (obj)=>{
+      let Obj = '{\n'
+      for(let key in obj){
+        Obj += '\t'
+        if( typeof(obj[key]) === 'string'){
+          Obj += `${key}:"${obj[key]}"`
+        }else if( typeof(obj[key]) === 'object'){
+          Obj += `${key}:${readableArray(obj[key])}`
+        }else {
+          Obj += `${key}:${obj[key]}`
+        }
+        if(Object.keys(obj).pop() !== key.toString()){
+        Obj += ',\n'
+        }
+      }
+       Obj += '\n}'
+       return Obj
+      }
+
+    let data = responseData
+    console.log(data);
+    
+    let readableData = readableObj(data)
 
   return (
     <>
@@ -42,10 +97,10 @@ const Responce = ({ responseData }) => {
     <Box className={classes.component}>
     <TextareaAutosize 
     minRows={3}
-    maxRows={7}
+    maxRows={5}
     style={textAreaStyle}
     disabled='disabled'
-    value={readableObj}
+    value={readableData}
     >
 
     </TextareaAutosize>
