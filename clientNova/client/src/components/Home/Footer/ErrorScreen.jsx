@@ -1,7 +1,6 @@
 import React from 'react'
-import { Box, typography } from '@mui/material'
+import { Box } from '@mui/material'
 import { makeStyles } from '@mui/styles'
-import { margin } from '@mui/system'
 
 const useStyles = makeStyles({
     error:{
@@ -18,7 +17,7 @@ const ErrorScreen = () => {
   return (
     <>
     <Box style={{display:'flex'}}>
-        <img src={error} alt="Error image" className={classes.error} />
+        <img src={error} alt="Error" className={classes.error} />
     </Box>
     </>
   )

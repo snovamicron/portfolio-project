@@ -34,7 +34,7 @@ const SelectTab = () => {
         <>
             <Box className={classes.component}>
 
-                <Tabs value={value} onChange={handleChange} TabIndicatorProps={{ sx: { backgroundColor: 'red', bottom: 2, height: 3 } }} onChange={handleChange} textColor='none'>
+                <Tabs value={value} onChange={handleChange} TabIndicatorProps={{ sx: { backgroundColor: 'red', bottom: 2, height: 3 } }} textColor='none'>
                     <Tab className={classes.tab} label="Params" />
                     <Tab className={classes.tab} label="Header" />
                     <Tab className={classes.tab} label="Body" />
