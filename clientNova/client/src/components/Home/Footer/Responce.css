@@ -1,7 +1,11 @@
 #json-pretty > pre {
-    height: 28vh;
-    width: 85%;
+    height: 40vh;
+    width: 90%;
     margin: 0 auto;
     padding-left: 10px;
     padding-top: 5px;
+    font-size: .7rem;
 }
+#json-pretty::-webkit-scrollbar {
+    width: 5px !important;               /* width of the entire scrollbar */
+  }

@@ -12,6 +12,7 @@ import Responce from './Home/Footer/Responce'
 import ErrorScreen from './Home/Footer/ErrorScreen'
 import SnackBar from './Home/SnackBar'
 import { GetData } from '../services/Api'
+import LoadingScreen from './Home/Footer/LoadingScreen'
 
 
 const useStyles = makeStyles({
@@ -30,8 +31,10 @@ const Home = () => {
   const [errorMsg, setErrorMsg] = useState('')
   const [responseError, setResponseError] = useState(false)
   const [responseData, setResponseData] = useState()
+  const [loading, setLoading] = useState(false)
 
   const onSendClick = async () => {
+    setLoading(true)
     if (!CheckValidation(paramData, headerData, formData, jsonText, setErrorMsg)) {
       setError(true)
       return false
@@ -40,11 +43,13 @@ const Home = () => {
     const response = await GetData(paramData, headerData, formData, jsonText)
 
     if(response === 'error'){
+      setLoading(false)
       setResponseError(true)
       return
     }
 
     setResponseData(response.data)
+    setLoading(false)
     setResponseError(false)
   }
 
@@ -55,7 +60,7 @@ const Home = () => {
       <Box className={classes.component}>
         <Form onSendClick={onSendClick} />
         <SelectTab />
-        {responseError ? <ErrorScreen/> : <Responce responseData={responseData}/>}
+        {loading ? <LoadingScreen/> : responseError ? <ErrorScreen/> : <Responce responseData={responseData}/>}
         {error && <SnackBar error={error} setError={setError} errorMsg={errorMsg} />}
       </Box>
     </>
