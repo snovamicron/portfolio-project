@@ -16,44 +16,62 @@ import { makeStyles } from '@mui/styles'
 
 const useStyles = makeStyles({
     component: {
-        // backgroundColor: '#000000 !important'
+        backgroundColor: '#ffffff !important',
+        boxShadow: 'none !important',
+        borderBottom: '1px solid #cfcfcf'
     },
     menuIcon: {
-        color: '#ffffff'
+        color: '#5f5f5f'
+    },
+    search: {
+        margin: '0 auto !important',
+        width: '43%',
+    },
+    header:{
+        zIndex:1201,
+        position:'relative'
     }
 })
 
 
 
-const Header = () => {
+const SearchAppBar = ({ setOpen, open }) => {
     const classes = useStyles()
     const logo = {
         height: '30px',
         borderRadius: '4px',
-        margin: '0 10px'
+        margin: '0 10px',
+    }
+    const handleClicke = ()=>{
+        open ? setOpen(false):setOpen(true)
     }
     return (
-        <Box>
+        <Box className={classes.header}>
             <AppBar position='static' className={classes.component}>
                 <Toolbar>
-                    <IconButton >
+                    <IconButton onClick={() => handleClicke()}>
                         <MenuIcon className={classes.menuIcon} />
                     </IconButton>
                     <img src='logo.png' alt='logo' style={logo} />
-                    <Typography>
+                    <Typography style={{ color: '#000000' }}>
                         Note Down
                     </Typography>
                     <TextField
-                        placeholder='search'
+                        placeholder='Search...'
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
                                     <SearchOutlinedIcon />
                                 </InputAdornment>
                             ),
+                            style: {
+                                backgroundColor: '#ffffff',
+                                boxShadow: '1px 1px 5px 1px #44444461'
+                            }
                         }}
                         variant='outlined'
                         size='small'
+                        className={classes.search}
                     />
                 </Toolbar>
             </AppBar>
@@ -62,4 +80,4 @@ const Header = () => {
 }
 
 
-export default Header
+export default SearchAppBar

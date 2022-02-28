@@ -1,12 +1,16 @@
+import { useState } from "react"
 
 
 // components
-import Header from "./Home/Header"
+import SearchAppBar from "./Home/Header"
+import SideDrawer from "./Home/SideDrawer"
 
 const Home = () => {
+    const [open, setOpen] = useState(false)
     return (
         <>
-         <Header/>
+         <SearchAppBar open={open} setOpen={setOpen}/>
+         <SideDrawer open={open}/>
         </>
     )
 }
