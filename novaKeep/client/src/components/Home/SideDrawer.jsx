@@ -10,9 +10,9 @@ import {
 } from "@mui/material"
 import { styled } from "@mui/material/styles";
 import MuiDrawer from '@mui/material/Drawer'
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-
+import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
+import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 
 const drawerWidth = 240;
 
@@ -33,7 +33,7 @@ const closedMixin = (theme) => ({
     overflowX: 'hidden',
     width: `calc(${theme.spacing(7)} + 1px)`,
     [theme.breakpoints.up('sm')]: {
-      width: `calc(${theme.spacing(9)} + 1px)`,
+      width: `calc(${theme.spacing(7)} + 1px)`,
     },
   });
 
@@ -66,17 +66,34 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 
 const SideDrawer = ({ open }) => {
+  const iconList = [
+    {
+      id: 1,
+      name: 'note',
+      icon: <LightbulbOutlinedIcon/>
+    },
+    {
+      id: 2,
+      name:'archive',
+      icon: <ArchiveOutlinedIcon/>
+    },
+    {
+      id:3,
+      name:'trash',
+      icon: <DeleteOutlineOutlinedIcon/>
+    }
+  ]
     return (
         <Box>
             <Drawer variant="permanent" open={open}>
                 <DrawerHeader></DrawerHeader>
                 <List>
-                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem button key={text}>
+                    {iconList.map((iconObj, index) => (
+                        <ListItem button key={index}>
                             <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                                {iconObj.icon}
                             </ListItemIcon>
-                            <ListItemText primary={text} />
+                            <ListItemText primary={iconObj.name} />
                         </ListItem>
                     ))}
                 </List>

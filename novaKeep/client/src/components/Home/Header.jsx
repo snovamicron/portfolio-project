@@ -12,6 +12,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu'
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { makeStyles } from '@mui/styles'
+import { styled } from '@mui/material/styles';
 
 
 const useStyles = makeStyles({
@@ -33,12 +34,16 @@ const useStyles = makeStyles({
     }
 })
 
+const Heading = styled(Typography)`
+        color: #5f6368 ;
+        font-size: 1rem
+`
 
 
 const SearchAppBar = ({ setOpen, open }) => {
     const classes = useStyles()
     const logo = {
-        height: '30px',
+        height: '1.8rem',
         borderRadius: '4px',
         margin: '0 10px',
     }
@@ -53,9 +58,9 @@ const SearchAppBar = ({ setOpen, open }) => {
                         <MenuIcon className={classes.menuIcon} />
                     </IconButton>
                     <img src='logo.png' alt='logo' style={logo} />
-                    <Typography style={{ color: '#000000' }}>
+                    <Heading>
                         Note Down
-                    </Typography>
+                    </Heading>
                     <TextField
                         placeholder='Search...'
                         InputProps={{
@@ -65,7 +70,7 @@ const SearchAppBar = ({ setOpen, open }) => {
                                 </InputAdornment>
                             ),
                             style: {
-                                backgroundColor: '#ffffff',
+                                backgroundColor: 'rgb(203, 203, 203)',
                                 boxShadow: '1px 1px 5px 1px #44444461'
                             }
                         }}
