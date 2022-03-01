@@ -1,8 +1,11 @@
 import { useState } from "react"
 
+// MUI components
+import { Box } from '@mui/material'
 
 // components
 import SearchAppBar from "./Home/Header"
+import Notes from "./Home/Notes"
 import SideDrawer from "./Home/SideDrawer"
 
 const Home = () => {
@@ -10,7 +13,10 @@ const Home = () => {
     return (
         <>
          <SearchAppBar open={open} setOpen={setOpen}/>
-         <SideDrawer open={open}/>
+        <Box style={{display:'flex', width:'100%'}}>
+        <SideDrawer open={open}/>
+         <Notes/>
+        </Box>
         </>
     )
 }
