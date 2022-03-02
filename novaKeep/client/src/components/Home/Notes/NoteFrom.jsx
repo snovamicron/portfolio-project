@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useState, useRef, useContext } from 'react'
 
 
 //MUI component
 import { TextField, Box, ClickAwayListener } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 
+// context
+import { DataContext } from '../../../context/DataContextProvider'
 
 const useStyles = makeStyles({
     container: {
@@ -12,13 +14,13 @@ const useStyles = makeStyles({
         flexDirection: 'column',
         width: '50%',
         margin: 'auto',
-        padding: 10,
+        padding: 6,
         boxShadow: '0 1px 2px 0 rgb(60 64 67/ 30%), 0 2px 6px 2px rgb(60 64 67/ 15%)',
         borderRadius: 5,
     },
     text: {
         margin: '5px !important',
-        marginTop: '2px !important'
+        marginTop: '2px !important',
     }
 })
 
@@ -27,10 +29,18 @@ const useStyles = makeStyles({
 const NoteFrom = () => {
     const classes = useStyles()
     const [open, setOpen] = useState(false)
+    const [noteObj, setNoteObj] = useState({})
+
+    const { notes, addNotes } = useContext(DataContext)
+
+    const containerRef = useRef()
+
     const handleClick = () => {
+        containerRef.current.style.minHeight = '70px'
         setOpen(true)
     }
     const handleClickAway = () => {
+        containerRef.current.style.minHeight = '30px'
         setOpen(false)
     }
     return (
@@ -50,6 +60,7 @@ const NoteFrom = () => {
                 placeholder='Take a note...'
                 onClick={handleClick}
                 multiline
+                ref={containerRef}
             />
         </Box>
         </ClickAwayListener>
