@@ -1,11 +1,15 @@
+import { useContext } from 'react';
+import { DataContext } from '../../context/DataContextProvider';
+
 
 // MUI components
-import { Box } from '@mui/material'
+import { Box, Grid } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
 
 // components
 import  NoteFrom  from './Notes/NoteFrom'
+import NoteCard from './Notes/NoteCard';
 
 
 const DrawerHeader = styled('div')(({ theme }) => ({
@@ -17,20 +21,28 @@ const DrawerHeader = styled('div')(({ theme }) => ({
     ...theme.mixins.toolbar,
   }));
 
-//   const Container = styled('Box')`
-//   display : flex;
-//   width: 100%
-//   `
 
   
 
 
 const Notes = ()=>{
+  const { notes } = useContext(DataContext)
     return (
         <>
-        <Box component="main" sx={{ flexGrow: 1, p: 5 , display:'flex'}}>
+        <Box component="main" sx={{ flexGrow: 1, p: 5, padding:0}}>
           <DrawerHeader/>
           <NoteFrom/>
+          <Grid container mt={3}>
+          {
+            notes.map( note => {
+              return (
+                <Grid item key={note.id}>
+                  <NoteCard note={note}/>
+                </Grid>
+              )
+            })
+          }
+          </Grid>
         </Box>
         </>
       )

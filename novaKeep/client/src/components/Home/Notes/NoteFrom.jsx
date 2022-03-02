@@ -1,4 +1,5 @@
 import { useState, useRef, useContext } from 'react'
+import { v4 as uuid } from 'uuid'
 
 
 //MUI component
@@ -24,14 +25,22 @@ const useStyles = makeStyles({
     }
 })
 
-
+const dataObj = {
+    id: "",
+    heading: "",
+    note : ""
+}
 
 const NoteFrom = () => {
     const classes = useStyles()
     const [open, setOpen] = useState(false)
-    const [noteObj, setNoteObj] = useState({})
+    const [noteObj, setNoteObj] = useState({ ...dataObj, id: uuid()})
 
-    const { notes, addNotes } = useContext(DataContext)
+    const { addNotes } = useContext(DataContext)
+
+    const onTextChange = (e)=>{
+        setNoteObj({ ...noteObj, [e.target.name]: e.target.value})
+    }
 
     const containerRef = useRef()
 
@@ -41,7 +50,11 @@ const NoteFrom = () => {
     }
     const handleClickAway = () => {
         containerRef.current.style.minHeight = '30px'
+        if(noteObj.heading || noteObj.note){
+            addNotes(oldArr => [...oldArr, noteObj])
+        }
         setOpen(false)
+        setNoteObj({ ...dataObj, id: uuid()})
     }
     return (
         <>
@@ -51,6 +64,9 @@ const NoteFrom = () => {
                 variant="standard"
                 InputProps={{ disableUnderline: true }}
                 placeholder='Title'
+                name='heading'
+                onChange={onTextChange}
+                value={noteObj.heading}
             />
             }
             <TextField
@@ -61,6 +77,9 @@ const NoteFrom = () => {
                 onClick={handleClick}
                 multiline
                 ref={containerRef}
+                name='note'
+                onChange={onTextChange}
+                value={noteObj.note}
             />
         </Box>
         </ClickAwayListener>
