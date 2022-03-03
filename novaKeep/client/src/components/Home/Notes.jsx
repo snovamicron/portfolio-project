@@ -10,6 +10,7 @@ import { styled } from '@mui/material/styles'
 // components
 import  NoteFrom  from './Notes/NoteFrom'
 import NoteCard from './Notes/NoteCard';
+import EmptyScreen from './Notes/EmptyNotesScreen';
 
 
 const DrawerHeader = styled('div')(({ theme }) => ({
@@ -32,7 +33,8 @@ const Notes = ()=>{
         <Box component="main" sx={{ flexGrow: 1, p: 5, padding:0}}>
           <DrawerHeader/>
           <NoteFrom/>
-          <Grid container mt={3}>
+            { notes.length === 0 && <EmptyScreen/>}
+          <Grid container style={{paddingLeft:'30px', paddingRight:'30px'}}>
           {
             notes.map( note => {
               return (

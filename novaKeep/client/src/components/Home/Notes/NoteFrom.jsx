@@ -18,6 +18,8 @@ const useStyles = makeStyles({
         padding: 6,
         boxShadow: '0 1px 2px 0 rgb(60 64 67/ 30%), 0 2px 6px 2px rgb(60 64 67/ 15%)',
         borderRadius: 5,
+        position:'relative',
+        bottom:'35px'
     },
     text: {
         margin: '5px !important',

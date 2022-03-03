@@ -9,7 +9,7 @@ import Notes from "./Home/Notes"
 import SideDrawer from "./Home/SideDrawer"
 
 const Home = () => {
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(true)
     return (
         <>
          <SearchAppBar open={open} setOpen={setOpen}/>
