@@ -1,3 +1,7 @@
+import { useContext } from 'react';
+
+// context
+import { DataContext } from '../../context/DataContextProvider';
 
 // MUI components
 import {
@@ -41,6 +45,7 @@ const Heading = styled(Typography)`
 
 
 const SearchAppBar = ({ setOpen, open }) => {
+    const { searchData, setSearchData } = useContext(DataContext)
     const classes = useStyles()
     const logo = {
         height: '1.8rem',
@@ -49,6 +54,9 @@ const SearchAppBar = ({ setOpen, open }) => {
     }
     const handleClicke = ()=>{
         open ? setOpen(false):setOpen(true)
+    }
+    const onSearchChange = (e)=>{
+        setSearchData(e.target.value)
     }
     return (
         <Box className={classes.header}>
@@ -70,13 +78,14 @@ const SearchAppBar = ({ setOpen, open }) => {
                                 </InputAdornment>
                             ),
                             style: {
-                                backgroundColor: 'rgb(203, 203, 203)',
-                                boxShadow: '1px 1px 5px 1px #44444461'
+                                backgroundColor: '#f1f3f4',
                             }
                         }}
                         variant='outlined'
                         size='small'
                         className={classes.search}
+                        onChange={onSearchChange}
+                        value={searchData}
                     />
                 </Toolbar>
             </AppBar>

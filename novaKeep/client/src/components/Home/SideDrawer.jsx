@@ -1,3 +1,8 @@
+import { useContext } from "react";
+
+
+//context
+import { DataContext } from "../../context/DataContextProvider";
 
 // MUI Components
 import {
@@ -66,6 +71,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 
 const SideDrawer = ({ open }) => {
+  const { setTunnel } = useContext(DataContext)
   const iconList = [
     {
       id: 1,
@@ -83,13 +89,24 @@ const SideDrawer = ({ open }) => {
       icon: <DeleteOutlineOutlinedIcon/>
     }
   ]
+
+  const onIconClick = (iconName)=>{
+    if(iconName === 'archive'){
+      setTunnel({ Note: false, Archive: true, Deleted: false})
+    }else if( iconName === 'trash'){
+      setTunnel({ Note: false, Archive: false, Deleted: true})
+    }else{
+      setTunnel({ Note: true, Archive: false, Deleted: false})
+    }
+  }
+
     return (
         <Box>
             <Drawer variant="permanent" open={open}>
                 <DrawerHeader></DrawerHeader>
                 <List>
                     {iconList.map((iconObj, index) => (
-                        <ListItem button key={index}>
+                        <ListItem button key={index} onClick={() => onIconClick(iconObj.name)}>
                             <ListItemIcon>
                                 {iconObj.icon}
                             </ListItemIcon>
