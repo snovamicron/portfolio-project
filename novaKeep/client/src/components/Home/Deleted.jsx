@@ -9,9 +9,7 @@ import { styled } from '@mui/material/styles'
 
 
 // components
-import NoteFrom from './Notes/NoteFrom'
-import NoteCard from './Notes/NoteCard';
-import EmptyScreen from './Notes/EmptyNotesScreen';
+import DeletedNoteCard from './Deleted/DeletedNoteCard';
 
 
 const DrawerHeader = styled('div')(({ theme }) => ({
@@ -27,8 +25,8 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 
 
-const Notes = () => {
-  const { notes, addNotes, searchData } = useContext(DataContext)
+const Deleted = () => {
+  const { deleted, setDeleted, searchData } = useContext(DataContext)
 
   const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
@@ -45,20 +43,19 @@ const Notes = () => {
     }
 
     const items = reorder(
-      notes,
+        deleted,
       result.source.index,
       result.destination.index
     );
 
-    addNotes(items)
+    setDeleted(items)
   }
   return (
     <>
       <Box component="main" sx={{ flexGrow: 1, p: 5, padding: 0 }}>
         <DrawerHeader />
 
-        <NoteFrom />
-         {notes.length === 0 && <EmptyScreen />}
+       
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="droppable" direction="horizontal">
             {(provided, snapshot) => (
@@ -66,7 +63,7 @@ const Notes = () => {
 
                 {
                  
-                    notes.filter(ele => ele.heading.toLowerCase().includes(searchData.toLowerCase()) || ele.note.toLowerCase().includes(searchData.toLowerCase())).map((note, index) => {
+                 deleted.filter(ele => ele.heading.toLowerCase().includes(searchData.toLowerCase()) || ele.note.toLowerCase().includes(searchData.toLowerCase())).map((note, index) => {
                       return (
                         <Draggable key={note.id} draggableId={note.id} index={index}>
                           {(provided, snapshot) => (
@@ -76,7 +73,7 @@ const Notes = () => {
                               {...provided.draggableProps}
                               {...provided.dragHandleProps}
                             >
-                              <NoteCard note={note} />
+                              <DeletedNoteCard note={note} />
                             </Grid>
                           )}
                         </Draggable>
@@ -94,4 +91,4 @@ const Notes = () => {
 
 
 
-export default Notes
+export default Deleted

@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from 'react-router-dom'
 
 
 //context
@@ -76,29 +77,24 @@ const SideDrawer = ({ open }) => {
     {
       id: 1,
       name: 'note',
-      icon: <LightbulbOutlinedIcon/>
+      icon: <LightbulbOutlinedIcon/>,
+      path:'/'
     },
     {
       id: 2,
       name:'archive',
-      icon: <ArchiveOutlinedIcon/>
+      icon: <ArchiveOutlinedIcon/>,
+      path:'/archive'
     },
     {
       id:3,
       name:'trash',
-      icon: <DeleteOutlineOutlinedIcon/>
+      icon: <DeleteOutlineOutlinedIcon/>,
+      path:'/deleted'
     }
   ]
 
-  const onIconClick = (iconName)=>{
-    if(iconName === 'archive'){
-      setTunnel({ Note: false, Archive: true, Deleted: false})
-    }else if( iconName === 'trash'){
-      setTunnel({ Note: false, Archive: false, Deleted: true})
-    }else{
-      setTunnel({ Note: true, Archive: false, Deleted: false})
-    }
-  }
+
 
     return (
         <Box>
@@ -106,12 +102,14 @@ const SideDrawer = ({ open }) => {
                 <DrawerHeader></DrawerHeader>
                 <List>
                     {iconList.map((iconObj, index) => (
-                        <ListItem button key={index} onClick={() => onIconClick(iconObj.name)}>
+                      <Link key={index} to={iconObj.path}>
+                        <ListItem button >
                             <ListItemIcon>
                                 {iconObj.icon}
                             </ListItemIcon>
                             <ListItemText primary={iconObj.name} />
                         </ListItem>
+                        </Link>
                     ))}
                 </List>
             </Drawer>
