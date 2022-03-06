@@ -80,6 +80,7 @@ const Deleted = () => {
                       )
                     })
                 }
+                 {provided.placeholder}
               </Grid>
             )}
           </Droppable>

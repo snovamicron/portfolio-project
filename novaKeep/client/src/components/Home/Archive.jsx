@@ -81,6 +81,7 @@ const Archive = () => {
                       )
                     })
                 }
+                 {provided.placeholder}
               </Grid>
             )}
           </Droppable>

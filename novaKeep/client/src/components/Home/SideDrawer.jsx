@@ -1,9 +1,5 @@
-import { useContext } from "react";
 import { Link } from 'react-router-dom'
 
-
-//context
-import { DataContext } from "../../context/DataContextProvider";
 
 // MUI Components
 import {
@@ -72,7 +68,6 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 
 const SideDrawer = ({ open }) => {
-  const { setTunnel } = useContext(DataContext)
   const iconList = [
     {
       id: 1,
@@ -102,12 +97,12 @@ const SideDrawer = ({ open }) => {
                 <DrawerHeader></DrawerHeader>
                 <List>
                     {iconList.map((iconObj, index) => (
-                      <Link key={index} to={iconObj.path}>
+                      <Link key={index} to={iconObj.path} style={{textDecoration:'none', color:'#000000'}}>
                         <ListItem button >
                             <ListItemIcon>
                                 {iconObj.icon}
                             </ListItemIcon>
-                            <ListItemText primary={iconObj.name} />
+                            <ListItemText primary={iconObj.name}/>
                         </ListItem>
                         </Link>
                     ))}

@@ -27,13 +27,13 @@ const ArchiveNoteCard = ({ note })=>{
     const classes = useStyles()
     const { setArchive, setDeleted, archive, addNotes } = useContext(DataContext)
     const onUnArchive = ()=>{
-        addNotes( oldArr => [...oldArr, archive.find(ele => ele.id === note.id)])
+        addNotes( oldArr => [...oldArr, note])
         let updatedNotes = archive
         updatedNotes.splice(archive.findIndex(ele => ele.id === note.id), 1)
         setArchive(updatedNotes)
     }
     const onDelete = ()=>{
-        setDeleted( oldArr => [...oldArr, archive.find(ele => ele.id === note.id)])
+        setDeleted( oldArr => [...oldArr, note])
         let updatedNotes = archive
         updatedNotes.splice(archive.findIndex(ele => ele.id === note.id), 1)
         setArchive(updatedNotes)

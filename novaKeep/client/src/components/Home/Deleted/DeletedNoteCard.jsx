@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { Card, CardContent, CardActions, Typography } from "@mui/material"
 import { makeStyles } from "@mui/styles"
 import RestoreFromTrashIcon from '@mui/icons-material/RestoreFromTrash';
+import DelForeverIcon from '@mui/icons-material/DeleteForever';
 
 // components
 import { DataContext } from "../../../context/DataContextProvider";
@@ -26,9 +27,13 @@ const DeletedNoteCard = ({ note })=>{
     const classes = useStyles()
     const { setDeleted, deleted, addNotes } = useContext(DataContext)
     const onRestore = ()=>{
-        addNotes( oldArr => [...oldArr, deleted.find(ele => ele.id === note.id)])
+        addNotes( oldArr => [...oldArr, note])
         let updatedDeletes = deleted
         updatedDeletes.splice(deleted.findIndex(ele => ele.id === note.id), 1)
+        setDeleted(updatedDeletes)
+    }
+    const onDeleteForever = ()=>{
+        let updatedDeletes = deleted.filter(ele => ele.id !== note.id)
         setDeleted(updatedDeletes)
     }
     return(
@@ -46,6 +51,10 @@ const DeletedNoteCard = ({ note })=>{
                     <RestoreFromTrashIcon
                     fontSize='small' 
                     onClick={onRestore}
+                    />
+                    <DelForeverIcon
+                    fontSize='small' 
+                    onClick={() => onDeleteForever()}
                     />
                     </CardActions>
             </Card>

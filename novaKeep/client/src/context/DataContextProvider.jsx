@@ -9,7 +9,6 @@ const DataContextProvider = ({children})=> {
     const [archive, setArchive] = useState([])
     const [deleted, setDeleted] = useState([])
 
-    const [tunnel, setTunnel] = useState({ Note: true, Archive: false, Deleted: false})
     
     const [searchData, setSearchData] = useState('')
     
@@ -21,8 +20,6 @@ const DataContextProvider = ({children})=> {
             setArchive,
             deleted,
             setDeleted,
-            tunnel,
-            setTunnel,
             searchData,
             setSearchData
         }}>
