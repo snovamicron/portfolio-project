@@ -1,7 +1,19 @@
 import express from 'express'
+import cors from 'cors'
+import ConnectToMongoDB from './database/DataBaseConnection.js'
 
 const app = express()
 const PORT = 4000
+
+// cros error handling
+app.use(cors())
+
+// parsing incoming JSON payload requests 
+app.use(express.json())
+
+// connection with database
+ConnectToMongoDB()
+
 
 app.get('/',(req, res)=>{
     res.status(200).send('hello world')
