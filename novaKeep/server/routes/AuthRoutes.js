@@ -1,5 +1,8 @@
 import { Router } from "express";
 import { body, validationResult } from 'express-validator';
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+import 'dotenv/config'
 
 // model
 import userData from '../model/UserModel.js'
@@ -21,7 +24,36 @@ router.post('/singup', [
     }
     try {
         let newUser = await userData.findOne({username: req.body.username}).exec()
+
         if(newUser){
+            res.status(400).send('username is not available create another')
+        }
+        
+        newUser = await userData.findOne({email: req.body.email}).exec()
+        if(newUser){
+            res.status(400).send('email is already taken')
+        }
+
+        try {
+            let password = await bcrypt.hash(req.body.password, 10)
+
+            try {
+                newUser = await userData.create({
+                    name: req.body.name,
+                    username: req.body.username,
+                    email: req.body.email,
+                    password
+                })
+                let token = jwt.sign({ id: newUser._id }, process.env.JWT_PRIVATE_KEY)
+                res.status(200).json({ token })
+            } catch (error) {
+                res.status(500).send('internal server error')
+                console.log('getting error while create new user in database '+error)
+            }
+
+        } catch (error) {
+            res.status(500).send('internal server error')
+            console.log('getting error while creating password hash'+error)
         }
         
     } catch (error) {
@@ -29,3 +61,11 @@ router.post('/singup', [
         console.log('getting error while create new user in database' + error);
     }
 })
+
+
+// endpoint for login
+
+
+
+
+export default router
