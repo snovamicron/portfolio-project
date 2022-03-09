@@ -3,7 +3,8 @@ import cors from 'cors'
 import ConnectToMongoDB from './database/DataBaseConnection.js'
 
 // Routes
-import router from './routes/AuthRoutes.js'
+import authRouter from './routes/AuthRoutes.js'
+import noteRouter from './routes/NoteRoutes.js'
 
 const app = express()
 const PORT = 4000
@@ -21,8 +22,12 @@ app.get('/',(req, res)=>{
     res.status(200).send('hello world')
 })
 
-// middlware for sing up
-app.use('/auth',router)
+// middlware for sing up and log in
+app.use('/auth',authRouter)
+
+// middlware for notes
+app.use('/note',noteRouter)
+
 
 app.listen(PORT, ()=>{
     console.log(`your server is running on http://localhost:${PORT}`)   
