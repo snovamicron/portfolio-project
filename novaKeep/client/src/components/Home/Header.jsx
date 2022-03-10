@@ -1,4 +1,6 @@
 import { useContext } from 'react';
+import { Link } from 'react-router-dom'
+import './Header.css'
 
 // context
 import { DataContext } from '../../context/DataContextProvider';
@@ -42,6 +44,11 @@ const Heading = styled(Typography)`
         color: #5f6368 ;
         font-size: 1rem
 `
+const Heading2 = styled(Typography)`
+        color: #5f6368 ;
+        font-size: 1rem;
+        cursor:pointer  
+`
 
 
 const SearchAppBar = ({ setOpen, open }) => {
@@ -58,6 +65,7 @@ const SearchAppBar = ({ setOpen, open }) => {
     const onSearchChange = (e)=>{
         setSearchData(e.target.value)
     }
+    
     return (
         <Box className={classes.header}>
             <AppBar position='static' className={classes.component}>
@@ -87,6 +95,9 @@ const SearchAppBar = ({ setOpen, open }) => {
                         onChange={onSearchChange}
                         value={searchData}
                     />
+                       <Link to='singin' ><Heading2 className='link'  mr={3}>Sing in</Heading2></Link>
+                        <Heading2 className='link'  mr={2}>Log in</Heading2>
+                        <Heading2 style={{display:'none'}} className='link'  mr={2}>Log out</Heading2>
                 </Toolbar>
             </AppBar>
         </Box>

@@ -10,6 +10,8 @@ import SideDrawer from "./Home/SideDrawer"
 import Notes from "./Home/Notes"
 import Archive from "./Home/Archive"
 import Deleted from "./Home/Deleted"
+import Singin from './Home/Singin'
+
 
 const Home = () => {
     const [open, setOpen] = useState(true)
@@ -23,6 +25,7 @@ const Home = () => {
          <Route exact path="/" element={<Notes/>} />
          <Route exact path="/archive" element={<Archive/>} />
          <Route exact path="/deleted" element={<Deleted/>} />
+         <Route exact path="/singin" element={<Singin/>} />
          </Routes>
         </Box>
         </Router>
