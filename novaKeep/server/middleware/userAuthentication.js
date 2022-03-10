@@ -3,7 +3,6 @@ import 'dotenv/config'
 
 const verifyToken = (req, res, next)=>{   
     const token = req.header('token')
-    console.log(token);
     if(!token){
        res.status(400).send('please enter a token')
     }
