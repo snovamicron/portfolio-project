@@ -1,4 +1,7 @@
+import { useState, useContext } from 'react'
 
+//context
+import { SnackContext } from '../../context/SnackContextProvider'
 
 //MUI components
 import { Card, CardContent, CardActions, TextField, Box, Button } from '@mui/material'
@@ -30,23 +33,37 @@ const useStyles = makeStyles({
 
 const Singin = ()=>{
     const classes = useStyles()
+    const { setSnackopen, setMsg } = useContext(SnackContext)
+    const [fromData, getFromData]= useState({
+        name:'',
+        username:'',
+        email:'',
+        password:''
+    })
+
+    const onDataChange = (e)=>{
+        getFromData({ ...fromData, [e.target.name]:e.target.value})
+    }
+    const onSubmit = ()=>{
+      
+    }
     return (
         <>
         <Box className={classes.container}>
         <Card className={classes.card}>
             <CardContent className={classes.cardContent}>
-                <TextField placeholder='Enter a username' label="username" size='small' className={classes.textField}/>
-                <TextField placeholder='Use minimum 3 characters' label='name' size='small' className={classes.textField}/>
-                <TextField placeholder='Enter your email' label='email' size='small' className={classes.textField}/>
-                <TextField placeholder='Create a strong password' label='password' size='small' className={classes.textField}/>
+                <TextField onChange={onDataChange} name='username' placeholder='Enter a username' label="username" size='small' className={classes.textField}/>
+                <TextField onChange={onDataChange} name = 'name'placeholder='Use minimum 3 characters' label='name' size='small' className={classes.textField}/>
+                <TextField onChange={onDataChange} name='email' placeholder='Enter your email' label='email' size='small' className={classes.textField}/>
+                <TextField onChange={onDataChange} name='password' type='password' placeholder='Create a strong password (min 5 char)' label='password' size='small' className={classes.textField}/>
             </CardContent>
             <CardActions className={classes.cardContent}>
-                <Button variant="contained" color='success'> Submit </Button>
+                <Button onClick={onSubmit} variant="contained" color='success'> Submit </Button>
             </CardActions>
         </Card>
         </Box>
         </>
-    )
+    )    
 }
 
 export default Singin

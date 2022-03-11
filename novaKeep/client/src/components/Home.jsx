@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 // MUI components
@@ -11,10 +11,16 @@ import Notes from "./Home/Notes"
 import Archive from "./Home/Archive"
 import Deleted from "./Home/Deleted"
 import Singin from './Home/Singin'
+import SnackBar from "./Home/SanckBar"
+
+
+//context
+import { SnackContext } from "../context/SnackContextProvider"
 
 
 const Home = () => {
     const [open, setOpen] = useState(true)
+    const { snackopen, setSnackopen, msg } = useContext(SnackContext)
     return (
         <>
         <Router>
@@ -28,6 +34,7 @@ const Home = () => {
          <Route exact path="/singin" element={<Singin/>} />
          </Routes>
         </Box>
+        <SnackBar open={snackopen} setOpen={setSnackopen} msg={msg}/>
         </Router>
         </>
     )
