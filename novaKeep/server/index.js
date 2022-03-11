@@ -18,9 +18,9 @@ app.use(express.json())
 // connection with database
 ConnectToMongoDB()
 
-app.get('/',(req, res)=>{
-    res.status(200).send('hello world')
-})
+// app.get('/',(req, res)=>{
+//     res.status(200).send('hello world')
+// })
 
 // middlware for sing up and log in
 app.use('/auth',authRouter)
