@@ -52,7 +52,8 @@ const Heading2 = styled(Typography)`
 
 
 const SearchAppBar = ({ setOpen, open }) => {
-    const { searchData, setSearchData } = useContext(DataContext)
+    const { searchData, setSearchData, token } = useContext(DataContext)
+    console.log(token);
     const classes = useStyles()
     const logo = {
         height: '1.8rem',
@@ -95,8 +96,8 @@ const SearchAppBar = ({ setOpen, open }) => {
                         onChange={onSearchChange}
                         value={searchData}
                     />
-                       <Link to='singin' ><Heading2 className='link'  mr={3}>Sing in</Heading2></Link>
-                        <Heading2 className='link'  mr={2}>Log in</Heading2>
+                       {!token && <Link to='singin' style={{textDecoration:'none'}} ><Heading2 className='link'  mr={3}>Sing in</Heading2></Link>}
+                       {!token && <Link to='login' style={{textDecoration:'none'}} ><Heading2 className='link'  mr={3}>Log in</Heading2></Link>}
                         <Heading2 style={{display:'none'}} className='link'  mr={2}>Log out</Heading2>
                 </Toolbar>
             </AppBar>

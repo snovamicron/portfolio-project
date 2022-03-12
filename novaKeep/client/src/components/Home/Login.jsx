@@ -1,12 +1,11 @@
-import { useState, useContext } from 'react'
+import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
-//API
-import { sing_up } from '../../Services/AuthApi'
 
 //context
 import { SnackContext } from '../../context/SnackContextProvider'
-import { DataContext } from '../../context/DataContextProvider'
+
+//API
+import { log_in } from '../../Services/AuthApi'
 
 //MUI components
 import {
@@ -19,6 +18,7 @@ import {
     CircularProgress as BufferGif
 } from '@mui/material'
 import { makeStyles } from '@mui/styles'
+import { DataContext } from '../../context/DataContextProvider'
 
 const useStyles = makeStyles({
     container: {
@@ -44,22 +44,22 @@ const useStyles = makeStyles({
     }
 })
 
-const Singin = () => {
-    const navigate = useNavigate()
+const Login = () => {
     const classes = useStyles()
+    const navigate = useNavigate()
+    const onDataChange = (e) => {
+        getFromData({ ...fromData, [e.target.name]: e.target.value })
+    }
     const { setSnackopen, setMsg } = useContext(SnackContext)
     const { setToken } = useContext(DataContext)
     const [fromData, getFromData] = useState({
         name: '',
         username: '',
-        email: '',
-        password: ''
     })
     const [load, setLoad] = useState(false)
 
-    const onDataChange = (e) => {
-        getFromData({ ...fromData, [e.target.name]: e.target.value })
-    }
+
+
     const onSubmit = async () => {
         if (fromData.username.length === 0) {
             setSnackopen(true)
@@ -67,32 +67,20 @@ const Singin = () => {
         } else if (fromData.username.length < 3) {
             setSnackopen(true)
             setMsg({ payload: 'Username is too short', severity: 'warning' })
-        } else if (fromData.name.length === 0) {
-            setSnackopen(true)
-            setMsg({ payload: 'Give a Name', severity: 'error' })
-        } else if (fromData.name.length < 3) {
-            setSnackopen(true)
-            setMsg({ payload: 'Name is too short', severity: 'warning' })
-        } else if (fromData.password.length === 0) {
+        }  else if (fromData.password.length === 0) {
             setSnackopen(true)
             setMsg({ payload: 'Give a Password', severity: 'error' })
         } else if (fromData.password.length < 5) {
             setSnackopen(true)
             setMsg({ payload: 'Short password use minimum 5 characters', severity: 'warning' })
-        } else if (fromData.email.length === 0 || !fromData.email.includes('@')) {
-            setSnackopen(true)
-            setMsg({ payload: 'Give an Email', severity: 'error' })
         } else {
             setLoad(true)
-            const response = await sing_up({ payload: fromData })
+            const response = await log_in({ payload: fromData })
             localStorage.setItem('token', response.data.token)
             setToken(response.data.token)
             navigate('/')
             setLoad(false)
         }
-
-
-
     }
     return (
         <>
@@ -100,20 +88,18 @@ const Singin = () => {
                 {load && <BufferGif color='success' />}
                 {
                     !load && <Card className={classes.card}>
-                    <CardContent className={classes.cardContent}>
-                        <TextField onChange={onDataChange} name='username' placeholder='Enter a username' label="username" size='small' className={classes.textField} />
-                        <TextField onChange={onDataChange} name='name' placeholder='Use minimum 3 characters' label='name' size='small' className={classes.textField} />
-                        <TextField onChange={onDataChange} name='email' placeholder='Enter your email' label='email' size='small' className={classes.textField} />
-                        <TextField onChange={onDataChange} name='password' type='password' placeholder='Create a strong password (min 5 char)' label='password' size='small' className={classes.textField} />
-                    </CardContent>
-                    <CardActions className={classes.cardContent}>
-                        <Button onClick={onSubmit} variant="contained" color='success'> Submit </Button>
-                    </CardActions>
-                </Card>
+                        <CardContent className={classes.cardContent}>
+                            <TextField onChange={onDataChange} name='username' placeholder='Enter a username' label="username" size='small' className={classes.textField} />
+                            <TextField onChange={onDataChange} name='password' type='password' placeholder='Create a strong password (min 5 char)' label='password' size='small' className={classes.textField} />
+                        </CardContent>
+                        <CardActions className={classes.cardContent}>
+                            <Button onClick={onSubmit} variant="contained" color='success'> Submit </Button>
+                        </CardActions>
+                    </Card>
                 }
             </Box>
         </>
     )
 }
 
-export default Singin
+export default Login

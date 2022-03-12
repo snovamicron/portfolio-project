@@ -6,6 +6,7 @@ import 'dotenv/config'
 
 // model
 import userData from '../model/UserModel.js'
+import verifyToken from "../middleware/userAuthentication.js";
 
 // intialize express Router method
 const router = Router()
@@ -94,6 +95,22 @@ router.post('/login', [
       console.log(error)
   }
   
+})
+
+
+// end point for fetch saved user data
+
+router.get('/fetchdata', verifyToken, async (req, res)=>{
+    try {
+        const saveUser = await userData.findOne({_id: req.id}).select('-password -_id').exec()
+        if(!saveUser){
+            res.status(404).send('user not found')
+        }
+        res.status(200).json(saveUser)
+    } catch (error) {
+        res.status(500).send('internal server error')
+        console.log(error)
+    }
 })
 
 

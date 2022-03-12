@@ -27,7 +27,6 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 const Archive = () => {
   const { archive, setArchive, searchData } = useContext(DataContext)
-  console.log(archive)
 
   const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
