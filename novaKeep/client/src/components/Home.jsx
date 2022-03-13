@@ -26,7 +26,7 @@ import { DataContext } from "../context/DataContextProvider"
 const Home = () => {
     const [open, setOpen] = useState(true)
     const { snackopen, setSnackopen, msg } = useContext(SnackContext)
-    const { setUserData, token, setToken } = useContext(DataContext)
+    const { setUserData, token } = useContext(DataContext)
 
     const fetchUserData = async () => {
         let response = await fetch_user_data(token)

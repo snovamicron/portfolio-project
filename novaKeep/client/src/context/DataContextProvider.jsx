@@ -9,7 +9,6 @@ const DataContextProvider = ({children})=> {
     const [archive, setArchive] = useState([])
     const [deleted, setDeleted] = useState([])
     const [userData, setUserData] = useState({})
-    console.log(userData)
     const [token, setToken] = useState(localStorage.getItem('token'))
 
     

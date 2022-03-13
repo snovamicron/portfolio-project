@@ -1,7 +1,11 @@
-import { useContext } from 'react';
-import { DataContext } from '../../context/DataContextProvider';
+import { useContext, useEffect } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
+// COntext
+import { DataContext } from '../../context/DataContextProvider';
+
+// API
+import { get_notes } from '../../Services/NoteApi';
 
 // MUI components
 import { Box, Grid } from '@mui/material'
@@ -28,7 +32,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 
 const Notes = () => {
-  const { notes, addNotes, searchData } = useContext(DataContext)
+  const { notes, addNotes, searchData, token } = useContext(DataContext)
 
   const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
@@ -52,6 +56,15 @@ const Notes = () => {
 
     addNotes(items)
   }
+  const fetchNotes = async () => {
+    const response = await get_notes(token)
+    console.log(response.data);
+    addNotes(response.data.notes)
+  }
+  
+  useEffect(() => {
+    fetchNotes()
+  }, [])
   return (
     <>
       <Box component="main" sx={{ flexGrow: 1, p: 5, padding: 0 }}>

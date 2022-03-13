@@ -52,8 +52,7 @@ const Heading2 = styled(Typography)`
 
 
 const SearchAppBar = ({ setOpen, open }) => {
-    const { searchData, setSearchData, token } = useContext(DataContext)
-    console.log(token);
+    const { searchData, setSearchData, token, setToken } = useContext(DataContext)
     const classes = useStyles()
     const logo = {
         height: '1.8rem',
@@ -65,6 +64,11 @@ const SearchAppBar = ({ setOpen, open }) => {
     }
     const onSearchChange = (e)=>{
         setSearchData(e.target.value)
+    }
+
+    const onLogOut = ()=>{
+        localStorage.removeItem('token')
+        setToken('')
     }
     
     return (
@@ -98,7 +102,7 @@ const SearchAppBar = ({ setOpen, open }) => {
                     />
                        {!token && <Link to='singin' style={{textDecoration:'none'}} ><Heading2 className='link'  mr={3}>Sing in</Heading2></Link>}
                        {!token && <Link to='login' style={{textDecoration:'none'}} ><Heading2 className='link'  mr={3}>Log in</Heading2></Link>}
-                        <Heading2 style={{display:'none'}} className='link'  mr={2}>Log out</Heading2>
+                        {token && <Heading2 className='link' onClick={onLogOut}  mr={3}>Log out</Heading2>}
                 </Toolbar>
             </AppBar>
         </Box>

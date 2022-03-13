@@ -1,6 +1,8 @@
 import { useState, useRef, useContext } from 'react'
 import { v4 as uuid } from 'uuid'
 
+// API
+import { new_note } from '../../../Services/NoteApi'
 
 //MUI component
 import { TextField, Box, ClickAwayListener } from '@mui/material'
@@ -38,7 +40,7 @@ const NoteFrom = () => {
     const [open, setOpen] = useState(false)
     const [noteObj, setNoteObj] = useState({ ...dataObj, id: uuid()})
 
-    const { addNotes } = useContext(DataContext)
+    const { addNotes, token } = useContext(DataContext)
 
     const onTextChange = (e)=>{
         setNoteObj({ ...noteObj, [e.target.name]: e.target.value})
@@ -50,10 +52,19 @@ const NoteFrom = () => {
         containerRef.current.style.minHeight = '70px'
         setOpen(true)
     }
-    const handleClickAway = () => {
+    const handleClickAway = async () => {
         containerRef.current.style.minHeight = '30px'
         if(noteObj.heading || noteObj.note){
             addNotes(oldArr => [...oldArr, noteObj])
+            const response = await new_note({
+                token,
+                data:{
+                    note_id: noteObj.id,
+                    heading: noteObj.heading,
+                    note:noteObj.note 
+                }
+            })
+            console.log(response.data)
         }
         setOpen(false)
         setNoteObj({ ...dataObj, id: uuid()})
