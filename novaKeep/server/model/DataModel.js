@@ -7,10 +7,10 @@ const DataSchema = new Schema({
         type:String,
         required:true
     },
-    title:{
+    heading:{
         type:String
     },
-    payload:{
+    note:{
         type:String
     },
     date:{

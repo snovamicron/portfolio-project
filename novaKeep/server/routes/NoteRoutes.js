@@ -43,9 +43,10 @@ router.post('/newnote', verifyToken, async(req, res)=>{
         }
         try {
            let note = await noteData.create({
+               _id:req.note_id,
                 userId: req.id,
-                payload: req.body.payload,
-                title:req.body.title
+                note: req.body.note,
+                heading:req.body.heading
             })
             res.status(200).json(note)
         } catch (error) {
