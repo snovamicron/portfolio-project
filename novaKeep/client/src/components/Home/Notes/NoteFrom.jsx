@@ -61,7 +61,8 @@ const NoteFrom = () => {
                 data:{
                     note_id: noteObj.id,
                     heading: noteObj.heading,
-                    note:noteObj.note 
+                    note:noteObj.note,
+                    note_type:'notes'
                 }
             })
             console.log(response.data)

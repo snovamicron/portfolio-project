@@ -13,6 +13,10 @@ const DataSchema = new Schema({
     note:{
         type:String
     },
+    note_type:{
+        type:String,
+        required:true
+    },
     date:{
         type:Date,
         default:Date.now
