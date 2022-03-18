@@ -8,9 +8,15 @@ import {
     AppBar,
     Toolbar,
     Box,
-    Typography
+    Typography,
+    Button,
+    Badge
 } from '@mui/material'
 import { makeStyles } from '@mui/styles'
+
+// MUI icons 
+import CartIcon from '@mui/icons-material/ShoppingCart';
+
 
 const useStyles = makeStyles({
     appbar:{
@@ -33,6 +39,29 @@ const useStyles = makeStyles({
             fontStyle:'italic'
         },
         margin:'none !important'
+    },
+    option:{
+        display:'flex',
+        width:'25%',
+        justifyContent:'space-evenly',
+        alignItems:'center',
+        marginLeft:'auto',
+        marginRight:'55px'
+    },
+    loginButton:{
+        backgroundColor:'#ffffff !important',
+        color:'#2874f0 !important',
+        textTransform:'none !important',
+        boxShadow:'none !important',
+        borderRadius:'1.5px !important',
+        padding:'2px 40px !important',
+        fontSize:'0.95rem !important',
+        fontWeight:'500 !important'
+    },
+    cartButton:{
+        fontSize:'0.95rem !important',
+        display:'flex',
+        alignItems:'center'
     }
 })
 
@@ -42,6 +71,14 @@ const Header = ()=>{
     const classes = useStyles()
     const logoURL = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/flipkart-plus_8d85f4.png'
     const iconURL = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/plus_aef861.png'
+
+     function SimpleBadge() {
+        return (
+          <Badge badgeContent={4} color="error" style={{marginRight:8}}>
+            <CartIcon/>
+          </Badge>
+        );
+      }
     return(
         <>
             <AppBar className={classes.appbar}>
@@ -53,6 +90,14 @@ const Header = ()=>{
                     </Box>
                     </Box>
                     <SearchBar/>
+                    <Box className={classes.option}>
+                        <Button variant='contained' size='small' className={classes.loginButton}>Login</Button>
+                        <Typography style={{fontSize:'0.95rem'}}>More</Typography>
+                        <Typography className={classes.cartButton}>
+                        <SimpleBadge/>
+                        Cart
+                        </Typography>
+                    </Box>
                 </Toolbar>
             </AppBar>
         </>
