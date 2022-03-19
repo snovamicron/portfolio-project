@@ -11,9 +11,14 @@ import { bannerData } from '../../../constants/ConstData'
 
 const useStyles = makeStyles({
     component:{
-        border:'2px solid black',
-        width:'100%'
-        // height:'260px'
+        width:'100%',
+        height:300
+    },
+    main:{
+        height:'100%',
+        '& > div > button > svg':{
+            fontSize:'2rem'
+        }
     }
 })
 
@@ -21,10 +26,28 @@ const Banner = ()=>{
     const classes = useStyles()
     return(
         <>
-        <Carousel  className={classes.component} >
+        <Carousel
+        className={classes.main}
+        autoPlay={true}
+        indicators={false}
+        interval={2000}
+        animation='slide'
+        navButtonsAlwaysVisible={true}
+        cycleNavigation={true}
+        navButtonsProps={{style:{
+            backgroundColor:'#ffffff',
+            borderRadius:3,
+            margin:0,
+            height:100,
+            color:'#000000'
+        }}}
+        navButtonsWrapperProps={{style:{
+            top:-29
+        }}}
+        >
             {
                 bannerData.map( images => (
-                    <img src={images} alt="banner image"key={images}/>
+                    <img src={images} alt="banner image"key={images}  className={classes.component}/>
                 ) )
             }
         </Carousel>
