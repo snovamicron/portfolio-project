@@ -1,4 +1,4 @@
-
+import { Link } from 'react-router-dom';
 
 // components
 import SearchBar from './Header/SearchBar'
@@ -60,8 +60,10 @@ const useStyles = makeStyles({
     },
     cartButton:{
         fontSize:'0.95rem !important',
+        textDecoration:'none',
         display:'flex',
-        alignItems:'center'
+        alignItems:'center',
+        color:'#fff'
     }
 })
 
@@ -83,20 +85,24 @@ const Header = ()=>{
         <>
             <AppBar className={classes.appbar}>
                 <Toolbar style={{minHeight: 51}}>
+                    <Link to='/' style={{textDecoration:'none', color:'#fff'}}>
                     <Box className={classes.logoBox}>
                     <img className={classes.logo} src={logoURL} alt='logo text' />
                     <Box className={classes.iconBox}>
                         <Typography>Explore Pluse</Typography><img style={{height:10}} src={iconURL} alt='plse icon'/>
                     </Box>
                     </Box>
+                    </Link>
                     <SearchBar/>
                     <Box className={classes.option}>
                         <Button variant='contained' size='small' className={classes.loginButton}>Login</Button>
                         <Typography style={{fontSize:'0.95rem'}}>More</Typography>
-                        <Typography className={classes.cartButton}>
+                        <Link to='/cart' className={classes.cartButton}>
+                        <Typography>
                         <SimpleBadge/>
                         Cart
                         </Typography>
+                        </Link>
                     </Box>
                 </Toolbar>
             </AppBar>
