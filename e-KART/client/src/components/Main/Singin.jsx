@@ -13,7 +13,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 // components
 
-import InfoForm from './Login/InfoForm'
+import InfoForm from './Singin/InfoForm'
 
 const useStyles = makeStyles({
     container:{
@@ -38,7 +38,7 @@ const useStyles = makeStyles({
     },
     text:{
         marginTop:45,
-        padding:'0 30px'
+        padding:'0 20px'
     },
     emptyImage:{
         // border:'2px solid #000',
@@ -59,24 +59,24 @@ const useStyles = makeStyles({
     }
 })
  
-const Login = ({ open, setOpen }) => {
+const Singin = ({ open, setOpen }) => {
     const classes = useStyles()
     return (
         <>
-            <Dialog  open={open.login} maxWidth='md' onClose={()=> setOpen({...open, login:false})}>
+            <Dialog  open={open.singin} maxWidth='md' onClose={()=> setOpen({...open, singin: false})}>
                 <IconButton className={classes.iconButton}>
-                    <CloseIcon onClick={()=> setOpen({...open, login:false})}/>
+                    <CloseIcon onClick={()=> setOpen({...open, singin: false})}/>
                 </IconButton>
                <Box className={classes.container}>
                <Box className={classes.leftWraper}>
                        <Box className={classes.text}>
-                       <Typography className={classes.loginText}>Login</Typography>
-                       <Typography style={{fontSize:'1.1rem', color:'#fff'}}>Get access to your Orders, Wishlist and Recommendations</Typography>
+                       <Typography className={classes.loginText}>Looks like you're new here!</Typography>
+                       <Typography style={{fontSize:'1.1rem', color:'#fff'}}>Sign up with your mobile number to get started</Typography>
                        </Box>
                        <img className={classes.emptyImage} src='https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/login_img_c4a81e.png' alt="" />
                </Box>
                 <Box className={classes.rightWraper}>
-                    <InfoForm setOpen={setOpen}/>
+                    <InfoForm open={open} setOpen={setOpen}/>
                 </Box>
                </Box>
             </Dialog>
@@ -85,4 +85,4 @@ const Login = ({ open, setOpen }) => {
 }
 
 
-export default Login
+export default Singin

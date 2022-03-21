@@ -69,7 +69,7 @@ const useStyles = makeStyles({
 
 
 
-const Header = ()=>{
+const Header = ({ setOpen, open })=>{
     const classes = useStyles()
     const logoURL = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/flipkart-plus_8d85f4.png'
     const iconURL = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/plus_aef861.png'
@@ -95,7 +95,7 @@ const Header = ()=>{
                     </Link>
                     <SearchBar/>
                     <Box className={classes.option}>
-                        <Button variant='contained' size='small' className={classes.loginButton}>Login</Button>
+                        <Button onClick={()=> setOpen({...open, login: true})} variant='contained' size='small' className={classes.loginButton}>Login</Button>
                         <Typography style={{fontSize:'0.95rem'}}>More</Typography>
                         <Link to='/cart' className={classes.cartButton}>
                         <Typography>
