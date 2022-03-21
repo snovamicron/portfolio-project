@@ -11,7 +11,7 @@ import Slide from './Home/Slide'
 
 const useStyles = makeStyles({
     component:{
-        height:300,
+        height:'auto',
         padding:'15px 10px',
         backgroundColor:'#f2f2f2',
         paddingBottom: 0
@@ -28,7 +28,19 @@ const Home = ()=>{
         <Banner/>
         </Box>
         <Box className={classes.component}>
-        <Slide/>
+        <Slide deal={true} heading='Deal of the day'/>
+        </Box>
+        <Box className={classes.component}>
+        <Slide deal={false} heading='Best Deals'/>
+        </Box>
+        <Box className={classes.component}>
+        <Slide deal={false} heading='Best Deals'/>
+        </Box>
+        <Box className={classes.component}>
+        <Slide deal={false} heading='Best Deals'/>
+        </Box>
+        <Box className={classes.component}>
+        <Slide deal={false} heading='Best Deals'/>
         </Box>
         </>
     )
