@@ -48,8 +48,11 @@ const InfoForm = ({ setOpen }) => {
                 <TextField className={classes.info} type='password' variant="standard" label='Enter Password' />
                 <Box className={classes.buttonBox}>
                     <Typography style={{ fontSize: '0.689rem' }} >By continuing, you agree to Flipkart's Terms of Use and Privacy Policy.</Typography>
+
                     <Button className={classes.button} style={{ backgroundColor: '#fb641b', boxShadow: 'none' }} variant='contained'>Login</Button>
+
                     <Typography style={{ color: '#7f7f7f', fontSize: '.795rem' }}>OR</Typography>
+                    
                     <Button onClick={()=> setOpen({login: false, singin: true})} className={classes.button} style={{ backgroundColor: '#fff', color: '#2874f0' }} variant='contained'>Sing in</Button>
                 </Box>
             </Box>

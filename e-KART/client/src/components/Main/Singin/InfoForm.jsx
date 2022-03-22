@@ -1,4 +1,7 @@
+import { useState } from 'react'
 
+// API's
+import { singup_user } from '../../../services/AllUserApi'
 
 // MUI components
 import {
@@ -41,17 +44,41 @@ const useStyles = makeStyles({
 
 const InfoForm = ({setOpen}) => {
     const classes = useStyles()
+    const [data, setData] = useState({
+        name:'',
+        email:'',
+        password:''
+    })
+    const onSingInClick = async ()=>{
+        const response = await singup_user(data)
+        if(response.status === 200){
+            localStorage.setItem('token', response.data.token)
+        }
+        setData({
+            name:'',
+            email:'',
+            password:''
+        })
+    }
+    const onTextChange = (e)=>{
+        setData({...data, [e.target.name]: e.target.value})
+    }
     return (
         <>
             <Box component='form' className={classes.form}>
-                <TextField className={classes.info} type='text' variant="standard" label='Enter Name' />
-                <TextField className={classes.info} type='text' variant="standard" label='Enter Email' />
-                <TextField className={classes.info} type='password' variant="standard" label='Enter Password' />
+                <TextField className={classes.info} name='name' value={data.name} onChange={(e)=> onTextChange(e)} type='text' variant="standard" label='Enter Name' />
+                <TextField className={classes.info} name='email' value={data.email} onChange={(e)=> onTextChange(e)} type='text' variant="standard" label='Enter Email' />
+                <TextField className={classes.info} name='password' value={data.password} onChange={(e)=> onTextChange(e)} type='password' variant="standard" label='Enter Password' />
                 <Box className={classes.buttonBox}>
+
                     <Typography style={{ fontSize: '0.689rem' }} >By continuing, you agree to Flipkart's Terms of Use and Privacy Policy.</Typography>
-                    <Button className={classes.button} style={{ backgroundColor: '#fb641b', boxShadow: 'none' }} variant='contained'>Sing in</Button>
+
+                    <Button onClick={()=> onSingInClick()} className={classes.button} style={{ backgroundColor: '#fb641b', boxShadow: 'none' }} variant='contained'>Sing in</Button>
+                    
                     <Typography style={{ color: '#7f7f7f', fontSize: '.795rem' }}>OR</Typography>
+
                     <Button onClick={()=> setOpen({login: true, singin: false})} className={classes.button} style={{ backgroundColor: '#fff', color: '#2874f0' }} variant='contained'>Login</Button>
+                    
                 </Box>
             </Box>
         </>
