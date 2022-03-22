@@ -17,6 +17,16 @@ const singUpValidationArr = [
     body('password').isLength({min: 5})
 ]
 
+
+
+//log in validation array
+const logInValidationArr = [
+    body('email').not().isEmpty().isEmail(),
+    body('password').isLength({min: 5})
+]
+
+
+
 // user singup endpoint
 router.post('/singup', singUpValidationArr, async(req, res)=>{
 
@@ -57,6 +67,37 @@ router.post('/singup', singUpValidationArr, async(req, res)=>{
 
 
 // user login endpoint
+router.post('/login', logInValidationArr, async (req, res)=>{
+   
+    // express validetor
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    
+    try {
+        const { email, password } = req.body
+        let user = await userData.findOne({email}).exec()
+        if(!user){
+            res.status(404).send('User not found')
+        }
+
+        let authPass = bcrypt.compareSync(password, user.password)
+
+        if(!authPass){
+            res.status(403).send('Forbidden request')
+        }
+
+         // converting userdata into a Json Web Token (JWT)
+         let token = jwt.sign({id: user._id}, process.env.JWT_KEY)
+         res.status(200).json({token})
+
+    } catch (error) {
+        res.status(500).send('internal server error')
+        console.log('getting error while login user '+error)
+    }
+
+})
 
 
 export default router
