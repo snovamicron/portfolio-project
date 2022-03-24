@@ -19,6 +19,7 @@ export const singup_user = async (payload)=>{
 
     } catch (error) {
         console.log('getting error while calling singup_user api '+error)
+        return error
     }
 }
 
@@ -31,7 +32,7 @@ export const login_user = async (payload)=>{
         const { email, password } = payload
         const response = await axios({
             method:'POST',
-            url:'/user/singup',
+            url:'/user/login',
             data:{
                 email,
                 password
@@ -42,7 +43,25 @@ export const login_user = async (payload)=>{
 
     } catch (error) {
         console.log('getting error while calling login_user api '+error)
+        return error
     }
 }
 
 
+// user fetch_data api
+export const fetch_user = async (payload)=>{
+    try {
+        const { token } = payload
+        const response = await axios({
+            method:'GET',
+            url:'/user/fetchuserdata',
+            headers:{
+                'token':token
+            }
+        })
+        return response
+    } catch (error) {
+        console.log('getting error while calling fetch_user api '+error)
+        return error
+    }
+}

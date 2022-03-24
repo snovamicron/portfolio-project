@@ -1,11 +1,16 @@
-import { useState } from 'react'
-
+import { useState, useContext, useEffect } from 'react'
 import { 
     BrowserRouter as Router,
     Routes,
     Route
 } from 'react-router-dom'
 
+
+// context
+import { UserData } from '../context/UserContext'
+
+// API
+import { fetch_user } from '../services/AllUserApi'
 
 
 // components
@@ -17,6 +22,20 @@ import Singin from './Main/Singin'
 
 const Main = ()=>{
     const [open, setOpen] = useState({ login: false, singin: false})
+    const { setData, jwt } = useContext(UserData)
+    const fetchUserData = async (token)=>{
+        const response = await fetch_user({ token })
+        setData(response.data)
+    }
+
+    useEffect(() => {
+      const token = localStorage.getItem('token')
+      if(token){
+          fetchUserData(token)
+      }
+       // eslint-disable-next-line
+    }, [jwt])
+    
     return(
         <>
         <Router>

@@ -1,3 +1,11 @@
+import { useState, useContext } from 'react'
+
+
+// API
+import { login_user } from '../../../services/AllUserApi'
+
+// context
+import { UserData } from '../../../context/UserContext'
 
 
 // MUI components
@@ -36,20 +44,50 @@ const useStyles = makeStyles({
         textTransform: 'none !important',
         width: '100%',
         fontWeight: '600 !important'
+    },
+    error:{
+        fontSize:'10px !important',
+        color:'red'
     }
 })
 
 const InfoForm = ({ setOpen }) => {
     const classes = useStyles()
+    const { setJwt } = useContext(UserData)
+    const [data, setData] = useState({
+        email:'',
+        password:''
+    })
+    const [error, setError] = useState(false)
+    const onTextChange = (e)=>{
+        setData({ ...data, [e.target.name]: e.target.value})
+    }
+    const onLoginClick = async ()=>{
+        try {
+            const response = await login_user(data)
+        localStorage.setItem('token', response.data.token)
+        setJwt(response.data.token)
+        setData({
+            email:'',
+            password:''
+        })
+        if(response.status === 200){
+            setOpen({login: false, singin: false})
+        }
+        } catch (error) {
+            setError(true)
+        }
+    }
     return (
         <>
             <Box component='form' className={classes.form}>
-                <TextField className={classes.info} type='text' variant="standard" label='Enter Email' />
-                <TextField className={classes.info} type='password' variant="standard" label='Enter Password' />
+                <TextField className={classes.info} value={data.email} onChange={(e)=> onTextChange(e)} name='email' type='email' variant="standard" label='Enter Email' />
+                <TextField className={classes.info} value={data.password} onChange={(e)=> onTextChange(e)} name='password' type='password' variant="standard" label='Enter Password' />
+                {error && <Typography className={classes.error}>Wrong email or password</Typography>}
                 <Box className={classes.buttonBox}>
                     <Typography style={{ fontSize: '0.689rem' }} >By continuing, you agree to Flipkart's Terms of Use and Privacy Policy.</Typography>
 
-                    <Button className={classes.button} style={{ backgroundColor: '#fb641b', boxShadow: 'none' }} variant='contained'>Login</Button>
+                    <Button onClick={()=> onLoginClick()} className={classes.button} style={{ backgroundColor: '#fb641b', boxShadow: 'none' }} variant='contained'>Login</Button>
 
                     <Typography style={{ color: '#7f7f7f', fontSize: '.795rem' }}>OR</Typography>
                     

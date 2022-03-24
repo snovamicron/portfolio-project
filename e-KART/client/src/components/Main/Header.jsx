@@ -1,7 +1,14 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+
+
+// context
+import { UserData } from '../../context/UserContext'
+
 
 // components
 import SearchBar from './Header/SearchBar'
+import AvatarComponent from './Header/AvatarComponent';
 
 // MUI components
 import {
@@ -70,6 +77,7 @@ const useStyles = makeStyles({
 
 
 const Header = ({ setOpen, open })=>{
+    const { data } = useContext(UserData)
     const classes = useStyles()
     const logoURL = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/flipkart-plus_8d85f4.png'
     const iconURL = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/plus_aef861.png'
@@ -95,7 +103,9 @@ const Header = ({ setOpen, open })=>{
                     </Link>
                     <SearchBar/>
                     <Box className={classes.option}>
-                        <Button onClick={()=> setOpen({...open, login: true})} variant='contained' size='small' className={classes.loginButton}>Login</Button>
+                        {
+                            Object.keys(data).length > 0 ? <AvatarComponent data={data}/> : <Button onClick={()=> setOpen({...open, login: true})} variant='contained' size='small' className={classes.loginButton}>Login</Button>
+                        }
                         <Typography style={{fontSize:'0.95rem'}}>More</Typography>
                         <Link to='/cart' className={classes.cartButton}>
                         <Typography>

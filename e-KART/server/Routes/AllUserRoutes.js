@@ -6,6 +6,9 @@ import jwt from 'jsonwebtoken'
 // models
 import userData from '../models/userModel.js'
 
+// middleware
+import AuthToken from '../middleware/AuthToken.js'
+
 
 const router = express.Router()
 
@@ -97,6 +100,22 @@ router.post('/login', logInValidationArr, async (req, res)=>{
         console.log('getting error while login user '+error)
     }
 
+})
+
+
+// user data fetch end point
+router.get('/fetchuserdata', AuthToken, async (req, res)=>{
+    try {
+        const { id } = req.body
+        const user = await userData.findOne({_id : id}).exec()
+        if(!user){
+            res.status(404).send('user not found')
+        }
+        res.status(200).json(user)
+    } catch (error) {
+        res.status(500).send('internal servr error')
+        console.log('getting error while fetching user data '+error)
+    }
 })
 
 

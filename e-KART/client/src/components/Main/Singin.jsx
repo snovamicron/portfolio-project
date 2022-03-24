@@ -6,7 +6,6 @@ import {
     Box,
     Typography,
     IconButton,
-    DialogTitle
 } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import CloseIcon from '@mui/icons-material/Close';
@@ -54,7 +53,7 @@ const useStyles = makeStyles({
     iconButton:{
         position:'absolute !important',
         top:0,
-        left:620,
+        left:690,
         width:40
     }
 })

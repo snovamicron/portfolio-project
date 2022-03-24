@@ -1,7 +1,10 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 
 // API's
 import { singup_user } from '../../../services/AllUserApi'
+
+// context
+import { UserData } from '../../../context/UserContext'
 
 // MUI components
 import {
@@ -44,6 +47,7 @@ const useStyles = makeStyles({
 
 const InfoForm = ({setOpen}) => {
     const classes = useStyles()
+    const { setJwt } = useContext(UserData)
     const [data, setData] = useState({
         name:'',
         email:'',
@@ -53,12 +57,14 @@ const InfoForm = ({setOpen}) => {
         const response = await singup_user(data)
         if(response.status === 200){
             localStorage.setItem('token', response.data.token)
+            setJwt(response.data.token)
         }
         setData({
             name:'',
             email:'',
             password:''
         })
+        setOpen({login: false, singin: false})
     }
     const onTextChange = (e)=>{
         setData({...data, [e.target.name]: e.target.value})
