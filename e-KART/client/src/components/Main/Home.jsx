@@ -1,4 +1,8 @@
+import { useSelector, useDispatch } from 'react-redux'
+import { useEffect } from 'react'
 
+// actions
+import SetProductsAction from '../../Redux/actions/SetProductsAction'
 
 // MUI components
 import { Box } from '@mui/material'
@@ -31,6 +35,12 @@ const useStyles = makeStyles({
 const Home = ()=>{
     const classes = useStyles()
     const adURL = "https://rukminim2.flixcart.com/flap/464/708/image/2af118ba18955d4c.jpg?q=70"
+    const { products } = useSelector(state => state.SetProducts)
+    
+    const dispatch = useDispatch()
+    useEffect(()=>{
+        dispatch(SetProductsAction())
+    },[])
     return (
         <>
         <NavBar/>
@@ -48,10 +58,10 @@ const Home = ()=>{
         </Box>
         <Box className={classes.component}>
         <Box className={classes.subComponent}>
-        <Slide deal={false} heading='Deal of the day'/>
-        <Slide deal={false} heading='Deal of the day'/>
-        <Slide deal={false} heading='Deal of the day'/>
-        <Slide deal={false} heading='Deal of the day'/>
+        <Slide deal={false} products={products} heading='Deal of the day'/>
+        <Slide deal={false} products={products} heading='Deal of the day'/>
+        <Slide deal={false} products={products} heading='Deal of the day'/>
+        <Slide deal={false} products={products} heading='Deal of the day'/>
         </Box>
         </Box>
         

@@ -1,9 +1,7 @@
 
 // MUI components
 import Carousel from 'react-material-ui-carousel'
-import { 
-    Box
-} from '@mui/material'
+
 import { makeStyles } from '@mui/styles'
 
 // constants data

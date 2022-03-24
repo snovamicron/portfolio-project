@@ -5,10 +5,12 @@ import Countdown from 'react-countdown'
 // MUI components
 import { makeStyles } from '@mui/styles'
 import { Divider } from '@mui/material'
+import { Box, Button, Typography } from "@mui/material";
 
 // for development need to delete
-import { products } from "../../../constants/ConstData"
-import { Box, Button, Typography } from "@mui/material";
+// import { products } from "../../../constants/ConstData"
+
+
 
 
 const useStyles = makeStyles({
@@ -65,9 +67,11 @@ const renderer = ({ hours, minutes, seconds }) => {
 
     return <span style={{ color: '#7f7f7f', fontWeight: '500' }}> {hours} : {minutes} : {seconds} Left</span>
 };
-const Slide = ({ deal, heading }) => {
+const Slide = ({ deal, heading, products }) => {
+    console.log(products)
     const classes = useStyles()
     const timerURL = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/timer_a73398.svg';
+    
     return (
         <>
             <Box className={classes.container}>

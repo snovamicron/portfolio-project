@@ -5,6 +5,7 @@ import cors from 'cors'
 
 // Routes
 import userRoutes from './Routes/AllUserRoutes.js'
+import productsRoutes from './Routes/AllProductsRoutes.js'
 
 const app = express()
 const PORT = 4000
@@ -20,6 +21,7 @@ ConnectionToDatabase()
 
 // middleware for all user routes
 app.use('/user', userRoutes)
+app.use('/products', productsRoutes)
 
 
 app.listen(PORT, ()=>{
