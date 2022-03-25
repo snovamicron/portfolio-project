@@ -10,4 +10,6 @@ const reducers = combineReducers({
 })
 
 
-export default createStore(reducers, composeWithDevTools(applyMiddleware(thunk)))
+const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)))
+
+export default store

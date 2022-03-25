@@ -68,10 +68,8 @@ const renderer = ({ hours, minutes, seconds }) => {
     return <span style={{ color: '#7f7f7f', fontWeight: '500' }}> {hours} : {minutes} : {seconds} Left</span>
 };
 const Slide = ({ deal, heading, products }) => {
-    console.log(products)
     const classes = useStyles()
     const timerURL = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/timer_a73398.svg';
-    
     return (
         <>
             <Box className={classes.container}>
@@ -87,29 +85,30 @@ const Slide = ({ deal, heading, products }) => {
                     <Button variant="contained" className={classes.button}>view all</Button>
                 </Box>
                 <Divider variant="fullWidth" />
+                { products && 
                 <Carousel
-                    swipeable={false}
-                    draggable={false}
-                    responsive={responsive}
-                    infinite={true}
-                    autoPlay={true}
-                    autoPlaySpeed={5000}
-                    keyBoardControl={true}
-                    containerClass="carousel-container"
-                    dotListClass="custom-dot-list-style"
-                    itemClass="carousel-item-padding-40-px"
-                >
-                    {
-                        products.map(ele => (
-                            <Box key={ele.id} className={classes.productBox} >
-                                <img src={ele.url} className={classes.productImage} />
-                                <Typography className={classes.text} style={{ fontWeight: 600, color: '#272727' }}>{ele.title.shortTitle}</Typography>
-                                <Typography className={classes.text} style={{ color: 'green' }}>{ele.discount}</Typography>
-                                <Typography className={classes.text} style={{ color: '#272727', opacity: '.6' }}>{ele.tagline}</Typography>
-                            </Box>
-                        ))
-                    }
-                </Carousel>
+                swipeable={false}
+                draggable={false}
+                responsive={responsive}
+                infinite={true}
+                autoPlay={true}
+                autoPlaySpeed={5000}
+                keyBoardControl={true}
+                containerClass="carousel-container"
+                dotListClass="custom-dot-list-style"
+                itemClass="carousel-item-padding-40-px"
+            >
+                {
+                    products.map(ele => (
+                        <Box key={ele.id} className={classes.productBox} >
+                            <img src={ele.url} className={classes.productImage} />
+                            <Typography className={classes.text} style={{ fontWeight: 600, color: '#272727' }}>{ele.title.shortTitle}</Typography>
+                            <Typography className={classes.text} style={{ color: 'green' }}>{ele.discount}</Typography>
+                            <Typography className={classes.text} style={{ color: '#272727', opacity: '.6' }}>{ele.tagline}</Typography>
+                        </Box>
+                    ))
+                }
+            </Carousel>}
             </Box>
         </>
     )

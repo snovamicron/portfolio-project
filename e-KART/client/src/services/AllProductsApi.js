@@ -6,7 +6,7 @@ export const fetch_products = async ()=>{
     try {
         const response = await axios({
             method:'GET',
-            url:'/porducts/fetchproductsdata'
+            url:'/products/fetchproductsdata'
         })
         return response
     } catch (error) {

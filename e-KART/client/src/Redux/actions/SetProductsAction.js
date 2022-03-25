@@ -3,7 +3,7 @@ import * as constants from '../constants'
 // API
 import { fetch_products } from '../../services/AllProductsApi'
 
-const SetProductsAction = async (dispatch)=>{
+const SetProductsAction = () => async (dispatch)=>{
     console.log('it is comming')
     try {
         const response = await fetch_products()

@@ -4,6 +4,9 @@ import { useEffect } from 'react'
 // actions
 import SetProductsAction from '../../Redux/actions/SetProductsAction'
 
+// constants
+// import { products } from '../../constants/ConstData'
+
 // MUI components
 import { Box } from '@mui/material'
 import { makeStyles } from '@mui/styles'
@@ -41,6 +44,7 @@ const Home = ()=>{
     useEffect(()=>{
         dispatch(SetProductsAction())
     },[])
+
     return (
         <>
         <NavBar/>
@@ -50,7 +54,7 @@ const Home = ()=>{
 
         <Box className={classes.component}>
         <Box style={{width:'84%'}}>
-        <Slide deal={true} heading='Deal of the day'/>
+        <Slide products={products} deal={true} heading='Deal of the day'/>
         </Box>
         <Box style={{marginTop:5}}>
             <img style={{height:338, boxShadow:'0 2px 4px 0 rgb(0 0 0 / 23%)'}} src={adURL} alt='ad' />
